@@ -2,8 +2,12 @@ package Project.Webshop_App_MVC.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,18 +18,12 @@ import Project.Webshop_App_MVC.model.User;
 @Controller
 public class UserController {
 
-	@PostMapping("/login")
-	public String login() {
-
-		return "login.html";
-
-	}
-
 	@PostMapping("/signIn")
 	public String createAccount() {
 
 		return "signIn.html";
 	}
+	
 
 	@PostMapping("/signIn/result")
 	public String registration(Model model, @RequestParam(name = "username") String username,
@@ -83,6 +81,71 @@ public class UserController {
 		return returnPage;
 
 	}
+	
+	@PostMapping("/login")
+	public String login() {
+	
+		
+		return "login.html";
+
+	}
+	
+	@PostMapping("/shop/categories")
+	public String categories(Model model,
+			@RequestParam (required =false, name="username") String username,
+			@RequestParam (required=false, name="password") String password,
+			@CookieValue (required=false, value="cookieUsername") String cookie_username,
+			@CookieValue (required=false, value="cookiePassword") String cookie_password,
+			HttpServletResponse response) {
+		
+		Database db=new Database(); 
+		
+		String returnPage=null; 
+		
+		 
+		List<User>users=null; 
+
+		/**CHECK THE USER AFTER THE LOGIN*/
+		
+		if ((username!=null) && (password!=null)) {
+			users=db.getUsersByUsernamePassword(username, password); 
+			
+			if ( (users.size()==1) ) {
+				
+				Cookie cookie1=new Cookie ("cookieUsername", username); 
+				Cookie cookie2=new Cookie ("cookiePassword", password); 
+				response.addCookie(cookie1); 
+				response.addCookie(cookie2);
+				
+				returnPage="shop.html"; 
+			}
+			
+			else {
+				
+				returnPage="failedLogin.html"; 
+			}
+		}
+		
+		
+		else {
+			
+			users=db.getUsersByUsernamePassword(cookie_username, cookie_password);
+			
+			if ( (users.size()==1) ) {
+				
+				returnPage="shop.html"; 
+			}
+			else {
+				
+				returnPage="failedLogin.html"; 
+				
+			}
+			
+		}
+
+		return returnPage;
+	}
+	
 
 	@PostMapping("/shop")
 	public String shop() {

@@ -1,12 +1,19 @@
 package Project.Webshop_App_MVC.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,9 +37,26 @@ public class Product {
 	@Column (name="quantity")
 	private int quantity; 
 	
-	@Enumerated(EnumType.STRING)
-	@Column (name="rating")
-	private Product_Rating rating;
+	@OneToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable (
+			name="products_ratings_mapping",
+			joinColumns=@JoinColumn (name="product_id"),
+			inverseJoinColumns= @JoinColumn (name="rating_id")
+			)		
+	private List<Product> ratings;
+	
+	
+	public Product() {
+		super();
+	}
+
+	public Product(String name, int price, String ingredients, int quantity) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.ingredients = ingredients;
+		this.quantity = quantity;
+	}
 
 	public int getId() {
 		return id;
@@ -74,13 +98,14 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	public Product_Rating getRating() {
-		return rating;
+	public List<Product> getRatings() {
+		return ratings;
 	}
 
-	public void setRating(Product_Rating rating) {
-		this.rating = rating;
-	} 
-	
+	public void setRatings(List<Product> ratings) {
+		this.ratings = ratings;
+	}
+
+
 	
 }

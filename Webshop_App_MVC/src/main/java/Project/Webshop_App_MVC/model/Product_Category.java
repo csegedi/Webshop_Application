@@ -27,7 +27,7 @@ public class Product_Category {
 	private String name; 
 	
 
-	@OneToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER )
 	@JoinTable (
 			name="categories_products_mapping",
 			joinColumns=@JoinColumn (name="categorie_id"),

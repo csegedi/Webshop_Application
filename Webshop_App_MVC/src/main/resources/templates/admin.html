@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Admin</title>
+	</head>
+	
+	<body>
+	
+		<h4>Add category: </h4>
+		
+			<form action="/admin/newItem" method="post">
+		
+				<input type="text" name="category" >
+					<br>
+					<br>
+				<input type="submit">
+				
+			</form>
+		
+		<br>
+		
+		<h4>Add products: </h4>
+		
+			<form action="/admin/newItem" method="post" >
+				<p>Name of the product: </p>
+					<input type="text" name="name" >
+						<br>
+				<p>The price of the product:</p>
+					<input type="number" name="price" >
+						<br>
+				<p>The ingredients:</p>
+					<input type="text" name="ingredients">
+						<br>
+				<p>The current quantity of the product:</p>
+					<input type="number" name="quantity" >
+						<br>
+					
+				<p> Select category for your product:</p>
+					
+					<select name= "categorie_var">
+					
+						<option th:each="allcategories:${categories}" th:value="${allcategories.id}" th:text="${allcategories.name}" ></option>
+					
+					
+					</select>
+						
+				
+				<br>
+				<br>
+				<input type="submit">
+			</form>
+			
+		<h4>Changes: </h4>
+		
+			<p>Change the price of the selected product: </p>
+				
+				<form action="/admin/change" method="post">
+				
+					<select name="selected_pprice" >
+					
+						<option th:each="product_list:${list}" th:value="${product_list.id}" th:text="${product_list.name}" ></option>
+					
+					</select>
+						
+						<input type="number" name="price"> 
+						
+						<input type="submit">
+						
+				</form>
+				
+			<br>
+			<br>
+			
+			<p>Change the quantity of the selected product: </p>
+				
+				<form action="/admin/change" method="post" >
+				
+					<select name="selected_pquantity" >
+					
+						<option th:each="product_list:${list}" th:value="${product_list.id}" th:text="${product_list.name}" ></option>
+					
+					</select>
+						<input type="number" name="quantity"  >
+					
+						<input type="submit">
+			
+				</form>	
+			
+			<br>
+			<br>
+				
+				<form action="/" method="get">
+				
+					<p>Click here to exit:</p>
+					
+						<br>
+				
+						<button type="submit">exit</button>
+				</form>		
+	
+	</body>
+	
+	
+</html>
