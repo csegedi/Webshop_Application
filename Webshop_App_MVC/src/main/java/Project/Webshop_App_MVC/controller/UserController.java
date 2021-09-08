@@ -192,6 +192,8 @@ public class UserController {
 		}
 
 		model.addAttribute("productsList", products);
+		
+		db.close(); 
 
 		return "shop.html";
 	}
@@ -254,15 +256,46 @@ public class UserController {
 				pay+=assistant;  
 			}
 		
-	
-		
+
 		model.addAttribute("cart", cart);
 		model.addAttribute("message", message);
 		model.addAttribute("pay", pay); 
+		
+		db.close(); 
 
 		return "cart.html";
 
 	}
+	
+	@PostMapping ("/shop/categories/products/cart/purchase")
+	public String purchasing (Model model) {
+		
+		Database db=new Database(); 
+		
+		model.addAttribute("cart", cart); 
+		
+		for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {
+			
+			Product current=cart.get(cartIndex); 
+			current.quantityDecrease(); 
+			
+			db.UpdateQuantity(current.getId(), current.getQuantity()); 	
+		}
+		
+		for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {
+			Product current=cart.get(cartIndex);
+			current.setActualCartQuantity(0); 
+		}
+		
+		cart.clear(); 
+		
+		
+
+		return "buy.html";
+		
+		
+	}
+	
 
 	@GetMapping("/shop/categories/products/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Completed buying!</title>
+	</head>
+	
+	<body>
+	
+		<p>Buying is completed!</p>
+		
+			<p>You have bought the following products: <p>
+			
+				
+			<table>
+			
+				<th>Product</th>
+				<th>Quantity</th>
+				
+				<tr th:each="actualCart:${cart}" >
+				<td th:text="${actualCart.name}" ></td>
+				<td th:text="${actualCart.actualCartQuantity}" ></td>
+				
+				</tr>
+			
+			</table>
+			
+				<br>
+				<br>
+				
+			<form action="/shop/categories" method="post">
+				
+				<p>Click here to select a category:</p>
+					
+					<br>
+				
+						<button type="submit">Categories</button>
+			</form>
+			
+				<br>
+				<br>
+			
+			<form action="/shop/categories/products" method="post">
+				
+				<p>Click here to select products:</p>
+					
+					<br>
+				
+						<button type="submit">Products</button>
+			</form>
+			
+				<br>
+				<br>
+			
+			<form action="/shop/categories/products/logout" method="get">
+				
+				<p>Click here to exit:</p>
+					
+					<br>
+				
+						<button type="submit">Exit</button>
+			</form>
+
+	
+	</body>
+	
+</html>

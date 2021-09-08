@@ -130,6 +130,13 @@ public class Product {
 		this.actualCartQuantity=increase; 
 
 	}
+
+	public void quantityDecrease() {
+		
+		int decrease=quantity-actualCartQuantity;  
+		
+		this.quantity=decrease; 
+	}
 	
 
 }

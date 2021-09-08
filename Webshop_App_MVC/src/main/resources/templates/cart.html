@@ -25,12 +25,11 @@
 			<br>
 			<br>
 			
-			<p>Total: </p>
-			<p th:text="${pay}" ></p>
+				<p>Total: </p>
+					<p th:text="${pay}" ></p>
 	
-			
-				<br>
-				<br>
+			<br>
+			<br>
 				
 				
 				<form action="/shop/categories/products" method="post">
@@ -41,8 +40,17 @@
 				
 						<button type="submit">Back</button>
 				</form>
-			
-			
+				
+				
+					
+				<form action="/shop/categories/products/cart/purchase" method="post">
+				
+					<p>Click here to return to products:</p>
+					
+						<br>
+				
+						<button type="submit">PURCHASE!</button>
+				</form>
 	
 	</body>
 	
