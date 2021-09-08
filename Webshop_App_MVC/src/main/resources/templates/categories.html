@@ -8,6 +8,22 @@
 	
 	<body>
 	
+		<form action="/shop/categories/products" method="post">
+		
+			<p> Select category for your product:</p>
+					
+					<select name= "categorie_var">
+					
+						<option th:each="allcategories:${categories}" th:value="${allcategories.id}" th:text="${allcategories.name}" ></option>
+					
+					</select>
+		
+						<br>
+						<br>
+					
+					<input type="submit">
+		
+		</form>
 	
 	
 	

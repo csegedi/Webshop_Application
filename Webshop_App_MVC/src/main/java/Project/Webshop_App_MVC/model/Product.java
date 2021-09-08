@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table (name="products")
@@ -29,7 +30,7 @@ public class Product {
 	private String name; 
 	
 	@Column (name="price")
-	private int price; 
+	private double price; 
 	
 	@Column (name="ingredients")
 	private String ingredients; 
@@ -37,20 +38,23 @@ public class Product {
 	@Column (name="quantity")
 	private int quantity; 
 	
+	@Transient
+	private int actualCartQuantity; 
+	
 	@OneToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable (
 			name="products_ratings_mapping",
 			joinColumns=@JoinColumn (name="product_id"),
 			inverseJoinColumns= @JoinColumn (name="rating_id")
 			)		
-	private List<Product> ratings;
+	private List<Rating> ratings;
 	
 	
 	public Product() {
 		super();
 	}
 
-	public Product(String name, int price, String ingredients, int quantity) {
+	public Product(String name, Double price, String ingredients, int quantity) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -74,7 +78,7 @@ public class Product {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
@@ -98,14 +102,34 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	public List<Product> getRatings() {
+	public List<Rating> getRatings() {
 		return ratings;
 	}
 
-	public void setRatings(List<Product> ratings) {
+	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
 
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
+
+	public int getActualCartQuantity() {
+		return actualCartQuantity;
+	}
+
+	public void setActualCartQuantity(int actualCartQuantity) {
+		this.actualCartQuantity = actualCartQuantity;
+	}
 	
+	public void cartIncrease (int quantity) {
+		
+		 int increase=actualCartQuantity+quantity;
+		
+		this.actualCartQuantity=increase; 
+
+	}
+	
+
 }

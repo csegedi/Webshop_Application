@@ -27,6 +27,17 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	@Column (name="role")
 	private Role role;
+	
+	public User() {
+		
+	}
+	
+
+	public User(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
 
 	public int getId() {
 		return id;

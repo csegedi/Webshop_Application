@@ -1,10 +1,108 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Shop</title>
+	</head>
 
-</body>
+		<style>
+			table, th, td {
+			border: 2px solid black;
+			border-collapse:collapse;
+			}
+		</style>
+	
+	<body>
+	
+		<table>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Ingredients</th>
+				<th>Quantity</th>
+				<th>Ratings</th>
+			
+					<tr th:each="products:${productsList}" >
+					
+						<td th:text="${products.name}" >
+						<td th:text="${products.price}" ></td>
+						<td th:text="${products.ingredients}" ></td>
+						<td th:text="${products.quantity}" ></td>
+						<td th:text="${products.ratings}"> </td> 
+						
+					</tr>
+
+			</table>
+		
+		<br>
+		<br>
+
+		<form action="/shop/categories/products/cart" method="post" >
+			
+				<p>Please choose a product and add to your cart</p>
+			
+				<select name="selected_product">
+				
+					<option th:each="products: ${productsList}" th:value="${products.id}" th:text="${products.name}"  ></option>
+				
+				</select>
+				
+				<input type="number" name="selected_quantity">
+				<button type="submit">Add to cart</button>
+			
+			</form>
+			
+			<br>
+	
+				<form action="/shop" method="post">
+				
+					<p>Please choose a product and add to your cart</p>
+				
+						<select name="selected_product">
+					
+							<option th:each="products: ${productsList}" th:value="${products.id}" th:text="${products.name}"  ></option>
+					
+						</select>
+					
+					<input type="radio"  name="rating" value="1">
+					<input type="radio"  name="rating" value="2">
+					<input type="radio"  name="rating" value="3">
+					<input type="radio"  name="rating" value="4">
+					<input type="radio"  name="rating" value="5">
+				
+				<button type="submit">Rate the selected product</button>
+	
+			</form>
+			
+			<br>
+			<br>
+	
+		
+			<form action="/shop/categories" method="post">
+				
+				<p>Click here to return to categories:</p>
+					
+					<br>
+				
+						<button type="submit">Back</button>
+			</form>
+		
+		
+		<br>
+		<br>
+		
+		<form action="/shop/categories/products/logout" method="get">
+				
+				<p>Click here to exit:</p>
+					
+					<br>
+				
+						<button type="submit">Exit</button>
+			</form>
+			
+		<br>
+		<br>
+		
+
+	</body>
+	
 </html>

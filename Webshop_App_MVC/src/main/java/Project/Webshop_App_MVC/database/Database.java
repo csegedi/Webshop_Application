@@ -78,6 +78,31 @@ public class Database {
 		
 	}
 	
+	
+public List<User> getAllUser() {
+		
+		List<User>userList=null; 
+		
+		Session session=sessionFactory.openSession(); 
+		session.beginTransaction(); 
+		
+		Query query=session.createNativeQuery("SELECT * FROM users", User.class);
+		
+		userList=query.getResultList(); 
+		
+		
+		session.getTransaction().commit();; 
+		session.close(); 
+		
+		return userList;
+		
+	}
+	
+	
+	
+	
+	
+	
 	public void insertCategory(String category) {
 		
 		Session session=sessionFactory.openSession(); 
@@ -93,14 +118,14 @@ public class Database {
 
 	}
 	
-	public void insertNewProduct(String name, int price, String ingredients, int quantity) {
+	public void insertNewProduct(String name, double d, String ingredients, int quantity) {
 		
 		Session session=sessionFactory.openSession(); 
 		session.beginTransaction(); 
 		
 		Query query=session.createNativeQuery("INSERT INTO products (name, price, ingredients, quantity) VALUES (:newName, :newPrice, :newIngredients, :newQuantity)"); 
 		query.setParameter("newName", name); 
-		query.setParameter("newPrice", price); 
+		query.setParameter("newPrice", d); 
 		query.setParameter("newIngredients", ingredients); 
 		query.setParameter("newQuantity", quantity); 
 		
@@ -161,7 +186,7 @@ public class Database {
 		
 		}
 	
-	 public void UpdatePrice(int id, Integer price ) {
+	 public void UpdatePrice(int id, Double price ) {
 		 
 		Session session=sessionFactory.openSession(); 
 		session.beginTransaction(); 
@@ -194,7 +219,6 @@ public class Database {
 			session.close();
 			
 		}
-	 
 	 
 	 
 

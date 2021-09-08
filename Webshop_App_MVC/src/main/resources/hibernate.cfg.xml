@@ -12,6 +12,7 @@
  <mapping class="Project.Webshop_App_MVC.model.User"/>
   <mapping class="Project.Webshop_App_MVC.model.Product_Category"/>
   <mapping class="Project.Webshop_App_MVC.model.Product"/>
+  <mapping class="Project.Webshop_App_MVC.model.Rating"/>
 
 
  </session-factory>
