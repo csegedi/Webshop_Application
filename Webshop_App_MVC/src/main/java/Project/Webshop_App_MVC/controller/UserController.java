@@ -98,7 +98,8 @@ public class UserController {
 	}
 
 	@PostMapping("/shop/categories")
-	public String categories(Model model, @RequestParam(required = false, name = "username") String username,
+	public String categories(Model model, 
+			@RequestParam(required = false, name = "username") String username,
 			@RequestParam(required = false, name = "password") String password,
 			@CookieValue(required = false, name = "cookie_Username") String cookieName,
 			@CookieValue(required = false, name = "cookie_Password") String cookiePassword,
@@ -112,16 +113,16 @@ public class UserController {
 
 		List<Product_Category> categorie_list = db.getAllCategory();
 
-		/** CHECK THE USER AFTER THE LOGIN */
+		/** CHECK THE USER AFTER THE LOGIN */                    
 
-		if ((username != null) && (password != null)) {
+		if ((username != null) && (password != null)) {           
 
 			for (int customersIndex = 0; customersIndex < customers.size(); customersIndex++) {
 				User current = customers.get(customersIndex);
 				if ((current.getUsername().equals(username)) && (current.getPassword().equals(password))
 						&& (current.getRole().equals(Role.CUSTOMER))) {
 
-					cookieName = current.getUsername();
+					cookieName = current.getUsername();                  //got the RequestParams by the first entry
 					cookiePassword = current.getPassword();
 					Cookie cookie = new Cookie("cookie_Username", cookieName);
 					Cookie cookie2 = new Cookie("cookie_Password", cookiePassword);
@@ -144,7 +145,7 @@ public class UserController {
 
 		/** CHECK THE USER AFTER RETURN */
 
-		else if (cookieName != null && cookiePassword != null) {
+		else if (cookieName != null && cookiePassword != null) {           //RequestParam don't exist, CookieValues are used
 			
 			for (int customersIndex = 0; customersIndex < customers.size(); customersIndex++) {
 				User current = customers.get(customersIndex);
@@ -167,7 +168,8 @@ public class UserController {
 	}
 
 	@PostMapping("/shop/categories/products")
-	public String shop(Model model, @CookieValue(name = "cookie_Username") String username,
+	public String shop(Model model, 
+			@CookieValue(name = "cookie_Username") String username,
 			@CookieValue(name = "cookie_Password") String password,
 			@RequestParam(required = false, name = "categorie_var") Integer category_id,
 			@CookieValue(required = false, name = "categorie_var_cookie") String category_id_cookie,
@@ -176,16 +178,18 @@ public class UserController {
 		Database db = new Database();
 		Product_Category category = null;
 		List<Product> products = null;
-		if (category_id != null) {
+		
+		if (category_id != null) {            //got the RequestParam by the first entry
 
 			category = db.getCategoryById(category_id);
 			products = category.getProducts();
-			String categoryString = String.valueOf(category_id);
-			Cookie cookie = new Cookie("categorie_var_cookie", categoryString);
+			String categoryString = String.valueOf(category_id);     
+			Cookie cookie = new Cookie("categorie_var_cookie", categoryString);   
 			response.addCookie(cookie);
 		}
 
-		else {
+		else {                                            //RequestParam don't exist, CookieValue is used
+			
 			int formatted_id = Integer.valueOf(category_id_cookie);
 			category = db.getCategoryById(formatted_id);
 			products = category.getProducts();
@@ -200,44 +204,49 @@ public class UserController {
 
 	@PostMapping("/shop/categories/products/cart")
 	public String cart(Model model, 
-			@RequestParam(required = false, name = "selected_quantity") int quantity,
-			@RequestParam(required = false, name = "selected_product")  int selectedProductId,
+			@RequestParam(required = false, name = "selected_quantity") Integer quantity,
+			@RequestParam(required = false, name = "selected_product")  Integer selectedProductId,
 			HttpServletResponse response, HttpServletRequest request) {
 
 		Database db = new Database();
 		String message = null;
-		Product product = db.getProductById(selectedProductId);
+		Product product=null; 
 		double pay=0;
-
-		if (quantity > product.getQuantity()) {
+		
+		if (selectedProductId!=null) {
+			
+			product = db.getProductById(selectedProductId);
+			
+																	//out of the limit of the storage
+		if ((quantity!=null) && (quantity > product.getQuantity())) {               
 			message = "You have added more products to your cart, what we own in our storage at the moment!"
 					+ "\nPlease check the quantity of the selected product!";
-		} else if (quantity < 0) {
-			message = "Wrong input! Please check your entered data!";
-		}
-
+		} 
+	
+		
+		/** ADD PRODUCT TO THE CART*/
+		
 		else {
-
-			String formatted_quantity = String.valueOf(quantity);
-			Cookie cookie2 = new Cookie("cookie_quantity", formatted_quantity);
-			response.addCookie(cookie2);
 
 			int assistant = 0;
 
-			for (int cartIndex = 0; cartIndex < cart.size(); cartIndex++) {
+			for (int cartIndex = 0; cartIndex < cart.size(); cartIndex++) {    //checking: is the product in the cart?
 				if (cart.get(cartIndex).getName().equals(product.getName())) {
 					assistant++;
-
 				}
 			}
+			
 
-			if (assistant == 0) {
-				product.setActualCartQuantity(quantity); 
+			if (assistant == 0) {                              //if the selected product isn't in the cart (new product)
+				product.setActualCartQuantity(quantity);       //add the product to cart with the incoming quantity
 				cart.add(product);
 
-			} else {
+			} 
+			
+			else {                                            //if the selected product is already in the cart 
 
 				for (int cartIndex = 0; cartIndex < cart.size(); cartIndex++) {
+					
 					if (cart.get(cartIndex).getName().equals(product.getName())) {
 						cart.get(cartIndex).cartIncrease(quantity);
 					}
@@ -248,10 +257,14 @@ public class UserController {
 			message = "Your cart: ";
 		}
 		
+		}
+		
+		
+		/**CALCULATION OF TOTAL PRICE  */
 		
 		for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {
 				
-				Product current=cart.get(cartIndex);
+			Product current=cart.get(cartIndex);
 			double assistant=current.getPrice()*current.getActualCartQuantity(); 
 				pay+=assistant;  
 			}
@@ -277,26 +290,68 @@ public class UserController {
 		for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {
 			
 			Product current=cart.get(cartIndex); 
-			current.quantityDecrease(); 
+			current.quantityDecrease();                                 
 			
-			db.UpdateQuantity(current.getId(), current.getQuantity()); 	
+			db.UpdateQuantity(current.getId(), current.getQuantity()); 	//decrease from the storage
 		}
 		
-		for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {
+		for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {   //delete from the cart
 			Product current=cart.get(cartIndex);
 			current.setActualCartQuantity(0); 
 		}
 		
 		cart.clear(); 
 		
+		db.close(); 
 		
-
 		return "buy.html";
 		
 		
 	}
 	
-
+	
+	@PostMapping ("/shop/categories/products/cart/delete")
+	public String deleteFromTheCart(Model model,
+			@RequestParam(required = false, name = "selected_quantity") Integer quantity,
+			@RequestParam(required = false, name = "selected_product")  Integer selectedProductId) {
+		
+		Database db=new Database(); 
+		
+		
+		if (selectedProductId!=null && quantity==null) {
+			
+			Product product=db.getProductById(selectedProductId);
+			
+			for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {
+			
+				if (cart.get(cartIndex).getName().equals(product.getName())){
+				cart.remove(cartIndex); 
+				}
+			}
+			
+		}
+		
+		if (quantity!=null && selectedProductId!=null) {
+			
+			Product product=db.getProductById(selectedProductId);
+			
+			for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {
+				
+				if (cart.get(cartIndex).getName().equals(product.getName())){
+				cart.get(cartIndex).cartDecrease(quantity); 
+				if (cart.get(cartIndex).getActualCartQuantity()<0) {
+					cart.remove(cartIndex); 
+				}
+				}
+			}
+			
+		}
+		
+		return "deleteFromTheCart.html";
+		
+	}
+	
+	
 	@GetMapping("/shop/categories/products/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 
@@ -310,6 +365,8 @@ public class UserController {
 				response.addCookie(cookies[i]);
 			}
 		}
+		
+		cart.clear(); 
 
 		String page = "redirect:/";
 

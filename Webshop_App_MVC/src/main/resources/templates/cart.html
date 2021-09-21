@@ -30,7 +30,41 @@
 	
 			<br>
 			<br>
+			
+				<form action="/shop/categories/products/cart/delete" method="post">
 				
+					<p>Click here to remove the product from your cart:</p>
+					
+						<select name="selected_product" >
+						
+							<option th:each="actualCart: ${cart}" th:value="${actualCart.id}" th:text="${actualCart.name}"></option> 
+						
+						</select>
+							<button type="submit">Remove</button>
+				
+				</form>
+				
+			<br>
+			<br>
+			
+				<form action="/shop/categories/products/cart/delete" method="post">
+				
+					<p>Click here to decrease the quantity from your cart:</p>
+					
+						<select name="selected_product" >
+						
+							<option th:each="actualCart: ${cart}" th:value="${actualCart.id}" th:text="${actualCart.name}"></option> 
+						
+						</select>
+				
+						<input type="range" name="selected_quantity" min="0" max="50" value="0" oninput="this.nextElementSibling.value = this.value"  >
+						<output>0</output>
+						<button type="submit">Decrease the quantity</button>
+
+				</form>
+			
+				<br>
+				<br>
 				
 				<form action="/shop/categories/products" method="post">
 				

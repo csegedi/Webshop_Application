@@ -46,7 +46,8 @@
 				
 				</select>
 				
-				<input type="number" name="selected_quantity">
+				<input type="range" name="selected_quantity" min="0" max="50" value="0" oninput="this.nextElementSibling.value = this.value"  >
+				<output>0</output>
 				<button type="submit">Add to cart</button>
 			
 			</form>

@@ -153,7 +153,8 @@ public class AdminController {
 	}
 
 	@PostMapping("/admin/change")
-	public String changeItems(Model model, @RequestParam(required = false, name = "selected_pprice") Integer id1,
+	public String changeItems(Model model, 
+			@RequestParam(required = false, name = "selected_pprice") Integer id1,
 			@RequestParam(required = false, name = "selected_pquantity") Integer id2,
 			@RequestParam(required = false, name = "price") Double price,
 			@RequestParam(required = false, name = "quantity") Integer quantity) {
