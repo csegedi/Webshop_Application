@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import Project.Webshop_App_MVC.database.Database;
 import Project.Webshop_App_MVC.model.Product;
 import Project.Webshop_App_MVC.model.Product_Category;
-import Project.Webshop_App_MVC.model.Rating;
 import Project.Webshop_App_MVC.model.Role;
 import Project.Webshop_App_MVC.model.User;
 
@@ -33,7 +32,8 @@ public class UserController {
 	}
 
 	@PostMapping("/signIn/result")
-	public String registration(Model model, @RequestParam(name = "username") String username,
+	public String registration(Model model,
+			@RequestParam(name = "username") String username,
 			@RequestParam(name = "password") String password) {
 
 		Database db = new Database();
@@ -197,6 +197,7 @@ public class UserController {
 
 		model.addAttribute("productsList", products);
 		
+		
 		db.close(); 
 
 		return "shop.html";
@@ -309,7 +310,6 @@ public class UserController {
 		
 	}
 	
-	
 	@PostMapping ("/shop/categories/products/cart/delete")
 	public String deleteFromTheCart(Model model,
 			@RequestParam(required = false, name = "selected_quantity") Integer quantity,
@@ -317,6 +317,7 @@ public class UserController {
 		
 		Database db=new Database(); 
 		
+		/** REMOVE PRODUTS FROM THE CART*/
 		
 		if (selectedProductId!=null && quantity==null) {
 			
@@ -331,6 +332,8 @@ public class UserController {
 			
 		}
 		
+		/** DECREASE THE QUANTITY OF THE SELECTED PRODUCT IN THE CART*/
+		
 		if (quantity!=null && selectedProductId!=null) {
 			
 			Product product=db.getProductById(selectedProductId);
@@ -339,27 +342,26 @@ public class UserController {
 				
 				if (cart.get(cartIndex).getName().equals(product.getName())){
 				cart.get(cartIndex).cartDecrease(quantity); 
-				if (cart.get(cartIndex).getActualCartQuantity()<0) {
+				if (cart.get(cartIndex).getActualCartQuantity()<0) {    //in case the customer delete more products 
 					cart.remove(cartIndex); 
 				}
-				}
 			}
-			
 		}
+			
+	}
 		
 		return "deleteFromTheCart.html";
 		
 	}
 	
-	
+
 	@GetMapping("/shop/categories/products/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 
 		Cookie[] cookies = request.getCookies();
 
 		if (cookies != null) {
-			System.out.println(cookies.length);
-
+	
 			for (int i = 0; i < cookies.length; i++) {
 				cookies[i].setMaxAge(0);
 				response.addCookie(cookies[i]);

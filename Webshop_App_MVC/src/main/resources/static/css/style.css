@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+.entry {
+	background-image: url("/pictures/opening.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	font-family: Copperplate, Papyrus, fantasy;
+}
+
+.identification {
+	background-image: url("/pictures/login.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	position: relative;
+}
+
+.entryTitle {
+	width: 27em;
+	height: 25em;
+	position: relative;
+	left: 80em;
+	top: 6em;
+}
+
+.firm {
+	position: absolute;
+	left: 1em;
+	top: 0.5em;
+	margin-bottom: 1em;
+	font-size: 4em;
+	text-shadow: 5px 5px 10px red;
+	margin: 0em;
+}
+
+.normal {
+	margin: 0em;
+	font-size: 2em;
+}
+
+.normal2 {
+	position: absolute;
+	top: 6.5em;
+	left: 7.5em;
+	margin: 0em;
+	font-size: 2em;
+}
+
+.mainMenu {
+	margin: 0em;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+
+.mainButton {
+	float: left;
+	width: 49.6%;
+	height: 3em;
+	font-family: inherit;
+	font-size: 1.7em;
+	background-color: transparent;
+	border: 1px solid brown;
+}
+
+.mainButton:hover {
+	color: red;
+	text-shadow: 8px 8px 10px red;
+	font-size: 2em;
+	border: 2px solid red;
+}
+
+.mainButton:active {
+	text-shadow: 8px 8px 10px blue;
+}
+
+.user {
+
+	position: absolute;
+	right: 20%;
+	top: 4em;
+	width: 20%;
+	height: 43em;
+	border: 5px solid gold;
+	padding: 100px 40px 30px 40px;
+	border-radius: 400px;
+	box-sizing: content-box; 
+	font-family: Copperplate, Papyrus, fantasy;
+	color: gold;
+	font-weight: bold;
+	background-color: transparent;
+}
+
+.secondaryTitle {
+	font-size: 3em;
+	text-shadow: 5px 5px 10px gold, 7px 7px 15px red;
+	margin: 0em;
+}
+
+.lowTitle {
+	font-size: 1.5em;
+	text-shadow: 2px 2px black;
+	margin: 0em;
+}
+
+input[type=text], input[type=password] {
+	font-family: Copperplate, Papyrus, fantasy; 
+	border-radius: 30px; 
+	width : 100%;
+	height: 40px;
+	border: 2px solid black;
+	background: #e0b51f;
+	width: 100%;
+}
+
+.button {
+	display: block;
+	font-family: Copperplate, Papyrus, fantasy;
+	font-size: 1em;
+	font-weight: bold;
+	border-radius: 30px;
+	width: 100%;
+	height: 60px;
+	border: 3px outset black;
+	background-image:linear-gradient(to top, gold, yellow, orange, red); 
+	transition-property:height;
+	transition-timing-function: linear;
+	transition-duration:0.5s; 
+}
+.button:hover {
+	text-shadow: 5px 5px 10px red;
+	font-size:1.5em; 
+	height:80px; 
+}

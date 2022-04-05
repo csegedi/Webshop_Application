@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Enter</title>
-	</head>
+<html class="entry">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Enter</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
 	
-	<body>
-	
-		<h4 style="text-align:center" >Welcome on our page!</h4>
-		
-			<h5>Please select:</h5>
-			
-				<form action="/login" method="post">
-				
-					<button type="submit">login</button>
-				
-				</form>
-				
-					<br>
-					<br>
-				
-				<form action="/signIn" method="post">
-				
-					<button type="submit">Create an account</button>
-				
-				</form>
-				
-	
-	</body>
+<body>
+	<div class="entryTitle">
+		<p class="normal">Welcome to</p>
+		<p class="firm">Nefertiti Cosmetics</p>
+		<p class="normal2">online store!</p>
+	</div>
+	<div class="mainMenu" >
+		<form action="/login" method="post">
+			<button class="mainButton" type="submit">login</button>
+		</form>	
+		<form action="/signIn" method="post">
+			<button class="mainButton" type="submit">Create an account</button>
+		</form>
+	</div>	
+</body>
+
 </html>

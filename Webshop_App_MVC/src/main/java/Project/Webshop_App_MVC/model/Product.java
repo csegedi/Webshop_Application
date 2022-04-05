@@ -41,14 +41,6 @@ public class Product {
 	@Transient
 	private int actualCartQuantity; 
 	
-	@OneToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable (
-			name="products_ratings_mapping",
-			joinColumns=@JoinColumn (name="product_id"),
-			inverseJoinColumns= @JoinColumn (name="rating_id")
-			)		
-	private List<Rating> ratings;
-	
 	
 	public Product() {
 		super();
@@ -102,13 +94,6 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
 
 	public void setPrice(double price) {
 		this.price = price;

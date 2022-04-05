@@ -98,11 +98,7 @@ public List<User> getAllUser() {
 		
 	}
 	
-	
-	
-	
-	
-	
+
 	public void insertCategory(String category) {
 		
 		Session session=sessionFactory.openSession(); 
@@ -271,11 +267,15 @@ public List<User> getAllUser() {
 		
 	}
 	
-	
+
 	public void close() {
 		
 		sessionFactory.close();
 	}
+
+	
+
+	
 
 	
 

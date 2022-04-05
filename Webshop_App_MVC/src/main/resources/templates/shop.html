@@ -19,7 +19,7 @@
 				<th>Price</th>
 				<th>Ingredients</th>
 				<th>Quantity</th>
-				<th>Ratings</th>
+
 			
 					<tr th:each="products:${productsList}" >
 					
@@ -27,7 +27,7 @@
 						<td th:text="${products.price}" ></td>
 						<td th:text="${products.ingredients}" ></td>
 						<td th:text="${products.quantity}" ></td>
-						<td th:text="${products.ratings}"> </td> 
+			
 						
 					</tr>
 
@@ -53,29 +53,8 @@
 			</form>
 			
 			<br>
-	
-				<form action="/shop" method="post">
-				
-					<p>Please choose a product and add to your cart</p>
-				
-						<select name="selected_product">
-					
-							<option th:each="products: ${productsList}" th:value="${products.id}" th:text="${products.name}"  ></option>
-					
-						</select>
-					
-					<input type="radio"  name="rating" value="1">
-					<input type="radio"  name="rating" value="2">
-					<input type="radio"  name="rating" value="3">
-					<input type="radio"  name="rating" value="4">
-					<input type="radio"  name="rating" value="5">
-				
-				<button type="submit">Rate the selected product</button>
-	
-			</form>
+			<br>
 			
-			<br>
-			<br>
 	
 		
 			<form action="/shop/categories" method="post">
