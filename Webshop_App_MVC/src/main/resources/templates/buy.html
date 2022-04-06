@@ -1,52 +1,37 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Completed buying!</title>
-		<link rel="stylesheet" href="/css/style.css">
-	</head>
-	
-	<body>
-	
-		<p>Buying is completed!</p>
-		
-				<br>
-				<br>
-				
-			<form action="/shop/categories" method="post">
-				
-				<p>Click here to select a category:</p>
-					
-					<br>
-				
-						<button type="submit">Categories</button>
-			</form>
-			
-				<br>
-				<br>
-			
-			<form action="/shop/categories/products" method="post">
-				
-				<p>Click here to select products:</p>
-					
-					<br>
-				
-						<button type="submit">Products</button>
-			</form>
-			
-				<br>
-				<br>
-			
-			<form action="/shop/categories/products/logout" method="get">
-				
-				<p>Click here to exit:</p>
-					
-					<br>
-				
-						<button type="submit">Exit</button>
-			</form>
+<html class="shop">
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" >
+	<title>Completed buying!</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
 
+<body>
+	<div>
+		<h4 class="lowTitle">Buying is completed!</h4>
+		<br>
+		<br>
+		<form action="/shop/categories" method="post">
+			<h4 class="lowTitle">Click here to select a category:</h4>
+			<button class="button" type="submit">Categories</button>
+		</form>
+		<br>
+		
+		<form action="/shop/categories/products" method="post">
+			<h4 class="lowtitle">Click here to select products:</h4>
+			<button class="button" type="submit">Products</button>
+		</form>
+		<br>
+		<br>
+		<br>
+		
+		<form action="/shop/categories/products/logout" method="get">
+			<h4 class="lowTitle">Click here to exit:</h4>
+			<br>
+			<button class="button" type="submit">Exit</button>
+		</form>
+	</div>
+</body>
 	
-	</body>
 	
 </html>

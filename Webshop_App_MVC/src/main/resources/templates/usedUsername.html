@@ -1,38 +1,30 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Used Username!</title>
-		<link rel="stylesheet" href="/css/style.css">
-	</head>
-	
-	<body>
-	
-		<h4 style="text-align:center" >The registration was unsuccessful!</h4>
-			<h5 style="text-align:center" > We are sorry, but your username is used in our database!! </h5>
-				<h5 style="text-align:center" > Please insert an another username! </h5>
-				
-					<form action="/signIn" method="post">
-					
-						<p>Click here to restart the registration:</p>
-						
-							<br>
-					
-							<button type="submit">Back</button>
-					</form>
-					
-				<br>
-				<br>
-				
-					<form action="/" method="get">
-					
-						<p>Click here to exit:</p>
-						
-							<br>
-					
-							<button type="submit">Exit</button>
-					</form>
-		
-	</body>
-	
+<html class="registration">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Used Username!</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+	<div class="regBox">
+		<h4 class="secondaryTitle">The registration was unsuccessful!</h4>
+		<h5 class="lowTitle"> We are sorry, but your username is used in our database!! </h5>
+		<h5 class="lowTitle"> Please insert an another username! </h5>
+		<form action="/signIn" method="post">
+			<p>Click here to restart the registration:</p>
+			<br>
+			<button class="button" type="submit">Back</button>
+		</form>
+			<br>
+			<br>
+		<form  action="/" method="get">
+			<p>Click here to exit:</p>
+			<br>
+			<button class="button" type="submit">Exit</button>
+		</form>
+	</div>
+</body>
+
 </html>

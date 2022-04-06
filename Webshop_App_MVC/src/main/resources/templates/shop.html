@@ -1,88 +1,52 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Shop</title>
-	</head>
+<html class="shop">
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Shop</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
 
-		<style>
-			table, th, td {
-			border: 2px solid black;
-			border-collapse:collapse;
-			}
-		</style>
-	
-	<body>
-	
-		<table>
-				<th>Name</th>
-				<th>Price</th>
-				<th>Ingredients</th>
-				<th>Quantity</th>
-
-			
-					<tr th:each="products:${productsList}" >
-					
-						<td th:text="${products.name}" >
-						<td th:text="${products.price}" ></td>
-						<td th:text="${products.ingredients}" ></td>
-						<td th:text="${products.quantity}" ></td>
-			
-						
-					</tr>
-
-			</table>
-		
-		<br>
-		<br>
-
+<body>
+	<div class="tableContainer">
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Ingredients</th>
+			<th>Quantity</th>
+		</tr>
+		<tr th:each="products:${productsList}" >
+			<td th:text="${products.name}" >
+			<td th:text="${products.price}" ></td>
+			<td th:text="${products.ingredients}" ></td>
+			<td th:text="${products.quantity}" ></td>
+		</tr>
+	</table>
+	</div>
+	<div class="regBox">
 		<form action="/shop/categories/products/cart" method="post" >
-			
-				<p>Please choose a product and add to your cart</p>
-			
-				<select name="selected_product">
-				
+			<h4 class="lowTitle">Please choose a product and add to your cart</h4>
+				<select class="roll" name="selected_product">
 					<option th:each="products: ${productsList}" th:value="${products.id}" th:text="${products.name}"  ></option>
-				
 				</select>
-				
+				<br>
 				<input type="range" name="selected_quantity" min="0" max="50" value="0" oninput="this.nextElementSibling.value = this.value"  >
 				<output>0</output>
-				<button type="submit">Add to cart</button>
-			
+				<button class="button" type="submit" value="submit">Add to cart</button>
 			</form>
-			
 			<br>
-			<br>
-			
-	
-		
 			<form action="/shop/categories" method="post">
-				
-				<p>Click here to return to categories:</p>
-					
-					<br>
-				
-						<button type="submit">Back</button>
+				<h4 class="lowTitle">Click here to return to categories:</h4>
+				<br>
+				<button class="button" type="submit">Back</button>
 			</form>
-		
-		
-		<br>
-		<br>
-		
-		<form action="/shop/categories/products/logout" method="get">
-				
-				<p>Click here to exit:</p>
-					
-					<br>
-				
-						<button type="submit">Exit</button>
+			<br>
+			<form action="/shop/categories/products/logout" method="get">
+				<h4 class="lowTitle">Click here to exit:</h4>
+				<br>
+				<button class="button" type="submit">Exit</button>
 			</form>
-			
-		<br>
-		<br>
-		
-
-	</body>
+	</div>
+</body>
 	
 </html>

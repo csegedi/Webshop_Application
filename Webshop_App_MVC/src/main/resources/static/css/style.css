@@ -1,21 +1,27 @@
 @charset "UTF-8";
 
-.entry {
-	background-image: url("/pictures/opening.jpg");
+html{
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
 	font-family: Copperplate, Papyrus, fantasy;
+	position: relative;
+}
+
+.entry {
+	background-image: url("/pictures/opening.jpg");
 }
 
 .identification {
 	background-image: url("/pictures/login.jpg");
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center;
-	position: relative;
+}
+
+.registration{
+	background-image:url("/pictures/wall.jpg");
+}
+.shop{
+	background-image: url("/pictures/wall2.jpg")
 }
 
 .entryTitle {
@@ -32,7 +38,7 @@
 	top: 0.5em;
 	margin-bottom: 1em;
 	font-size: 4em;
-	text-shadow: 5px 5px 10px red;
+	text-shadow: 5px 5px 10px red, 7px 7px 15px black;
 	margin: 0em;
 }
 
@@ -77,8 +83,7 @@
 	text-shadow: 8px 8px 10px blue;
 }
 
-.user {
-
+.userBox {
 	position: absolute;
 	right: 20%;
 	top: 4em;
@@ -88,22 +93,23 @@
 	padding: 100px 40px 30px 40px;
 	border-radius: 400px;
 	box-sizing: content-box; 
-	font-family: Copperplate, Papyrus, fantasy;
-	color: gold;
-	font-weight: bold;
 	background-color: transparent;
 }
 
 .secondaryTitle {
 	font-size: 3em;
-	text-shadow: 5px 5px 10px gold, 7px 7px 15px red;
+	text-shadow: 5px 5px 10px gold, 7px 7px 15px red, 3px 1px 1px black;
 	margin: 0em;
+	color:gold; 
+	font-weight: bold;
 }
 
 .lowTitle {
 	font-size: 1.5em;
 	text-shadow: 2px 2px black;
 	margin: 0em;
+	color: gold;
+	font-weight: bolder;
 }
 
 input[type=text], input[type=password] {
@@ -124,14 +130,86 @@ input[type=text], input[type=password] {
 	border-radius: 30px;
 	width: 100%;
 	height: 60px;
-	border: 3px outset black;
+	border: 4px outset black;
 	background-image:linear-gradient(to top, gold, yellow, orange, red); 
 	transition-property:height;
 	transition-timing-function: linear;
 	transition-duration:0.5s; 
 }
+
 .button:hover {
 	text-shadow: 5px 5px 10px red;
 	font-size:1.5em; 
 	height:80px; 
 }
+.button:active{
+	border:2px inset black;
+	text-shadow: 5px 5px 20px purple;
+	font-size:1em; 
+}
+
+.regBox{
+	position:absolute;
+	left:27%;
+	top:auto; 
+	text-align:center;
+	width:40%;
+	padding: 40px; 
+	
+}
+p{
+	font-size:1.2em;
+	font-weight:bold;
+	color:gold;
+	text-shadow: 2px 2px black;
+	margin:0em; 
+}
+.roll{
+	width:50%;
+	border-radius:30px; 
+	font-family:Copperplate, Papyrus, fantasy;
+	font-size:1.5em; 
+	font-weight:bolder;
+	color: black; 
+	text-align:center;
+	background-color:gold; 
+}
+
+.roll:hover{
+	font-size:2em; 
+}
+
+#categoryButton{
+	position:absolute;
+	right:30%; 
+	width:40%; 
+}
+
+table{
+	width:100%;  
+	background-image:url("/pictures/papyrus.jpg");
+	background-position:center;
+	background-size:cover;
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+	text-align:left;
+	font-size:1.4em;
+	font-weight:bolder;
+}
+td{
+	padding:20px; 
+}
+th{
+	padding:20px;
+	font-size:1.8em; 
+}
+.tableContainer{
+	overflow-x:auto;
+}
+
+
+
+
+
+
+

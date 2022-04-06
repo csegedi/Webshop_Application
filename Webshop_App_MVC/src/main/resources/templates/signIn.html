@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html class="identification">
-	<head >
-		<meta charset="UTF-8">
-		<title>Sign In</title>
-		<link rel="stylesheet" href="/css/style.css">
-	</head>
+
+<head >
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sign In</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
 	
-	<body>
-	
-		<h4 style="text-align:center" >You are on the registration page!</h4>
-			<h5 style="text-align:center" >Remember if you are the member of our shop, you can get a 10% discount by each buying!!</h5>
-			
-				<form action="/signIn/result" method="post">
-				
-					<p>Enter your username:</p>
-						<input type="text" name="username" >
-						
-							<br>
-							<br>
-					
-					<p>Enter your password:</p>
-					<p>Your password must contains: at least one uppercase, and at least one number!</p>
-						<input type="text" name="password">
-						
-							<br>
-							<br>
-						
-							<input type=submit >
-				
-				</form>
-	
-	</body>
+<body>
+	<div class="userBox">
+		<h4 class="secondaryTitle">You are on the registration page!</h4>
+		<form action="/signIn/result" method="post">
+			<p>Enter your username:</p>
+			<input type="text" name="username" >
+			<br>
+			<br>
+			<p>Enter your password:</p>
+			<br>
+			<p>Your password must contain: at least one uppercase, and at least one number!</p>
+			<input type="text" name="password">
+			<br>
+			<br>
+			<input class="button" type=submit >
+		</form>
+	</div>
+</body>
 	
 </html>
