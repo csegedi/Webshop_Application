@@ -5,23 +5,29 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sign In</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 	
 <body>
+	<div>
+		<form action="/" method="get">
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+	</div>
 	<div class="userBox">
-		<h4 class="secondaryTitle">You are on the registration page!</h4>
+		<h4 class="secondaryTitle">Sign In!</h4>
+		<br>
 		<form action="/signIn/result" method="post">
 			<p>Enter your username:</p>
 			<input type="text" name="username" >
 			<br>
 			<br>
 			<p>Enter your password:</p>
-			<br>
-			<p>Your password must contain: at least one uppercase, and at least one number!</p>
+			<p>Must contain: at least one uppercase, number!</p>
 			<input type="text" name="password">
 			<br>
 			<br>
-			<input class="button" type=submit >
+			<input class="button" type=submit value="Submit">
 		</form>
 	</div>
 </body>

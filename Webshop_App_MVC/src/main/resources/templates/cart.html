@@ -5,64 +5,65 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 	<title>Cart</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 	
 <body>
-	<div class="regBox">
+	<div>
+		<form action="/shop/categories/products/logout"  method="get">
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+		<form action="/shop/categories/products" method="post">
+			<button class="back" type="submit"> <span class="material-icons">arrow_back</span></button>
+		</form>
+	</div>
+	<div class="regBox" id="cartBox">
 		<h2 th:text="${message}" class="secondaryTitle" ></h2>
 			<div class="tableContainer">
-			<table>
-				<tr>
-					<th>Product</th>
-					<th>Quantity</th>
-				</tr>
-				<tr th:each="actualCart:${cart}" >
-					<td th:text="${actualCart.name}" ></td>
-					<td th:text="${actualCart.actualCartQuantity}" ></td>
-				</tr>
-			</table>
+				<table>
+					<tr>
+						<th>Product</th>
+						<th>Quantity</th>
+					</tr>
+					<tr th:each="actualCart:${cart}" >
+						<td th:text="${actualCart.name}" ></td>
+						<td th:text="${actualCart.actualCartQuantity}" ></td>
+					</tr>
+				</table>
 			</div>
-			<br>
-			<br>
-			
 			<h2 class="secondaryTitle">Total: </h2>
 			<h2 class="secondaryTitle" th:text="${pay}" ></h2>
 			<br>
 			<form action="/shop/categories/products/cart/delete" method="post">
 				<h4 class="lowTitle">Click here to remove the product from your cart:</h4>
-				<br>
 					<select class="roll" name="selected_product" >
 						<option th:each="actualCart: ${cart}" th:value="${actualCart.id}" th:text="${actualCart.name}"></option> 
 					</select>
 					<br>
 					<br>
-					<button class="button" type="submit">Remove</button>
+					<button class="button" id="cartButtonR" type="submit">Remove</button>
+					<br>
+					<br>
+					<br>
 			</form>
-			<br>
-			<br>
-			
 			<form action="/shop/categories/products/cart/delete" method="post">
 				<h4 class="lowTitle">Click here to decrease the quantity from your cart:</h4>
 					<select class="roll" name="selected_product" >
 						<option th:each="actualCart: ${cart}" th:value="${actualCart.id}" th:text="${actualCart.name}"></option> 
 					</select>
 					<br>
+					<br>
 					<input type="range" name="selected_quantity" min="0" max="50" value="0" oninput="this.nextElementSibling.value = this.value"  >
 					<output>0</output>
-					<button class="button" type="submit">Decrease the quantity</button>
+					<button class="button" id="cartButtonD" type="submit">Decrease the quantity</button>
+					<br>
+					<br>
+					<br>
+					<br>
 			</form>
-			<br>
-			<br>
-			<form action="/shop/categories/products" method="post">
-				<h4 class="lowTitle">Click here to return to products:</h4>
-				<button class="button" type="submit">Back to the products</button>
-			</form>
-			<br>
-			<br>
 			<form action="/shop/categories/products/cart/purchase" method="post">
 				<h4 class="lowTitle">Click here to buy:</h4>
-				<br>
-				<button class="button" type="submit">PURCHASE!</button>
+				<button class="button" id="cartButtonP" type="submit">PURCHASE!</button>
 			</form>
 	</div>
 </body>

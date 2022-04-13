@@ -5,27 +5,23 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 	<title>Failed Registration!</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+	
 </head>
 	
 <body>
+	<div>
+		<form action="/" method="get">
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+		<br>
+		<form action="/signIn" method="post">
+			<button class="back" type="submit"> <span class="material-icons">arrow_back</span></button>
+		</form>
+	</div>
 	<div class="regBox">
 		<h2 class="secondaryTitle">The registration was unsuccessful!</h2>
 		<h4 class="lowTitle"> Your password is to weak!! </h4>
-		<br>
-		
-		<form action="/signIn" method="post">
-			<p>Click here to restart the registration:</p>
-			<br>
-			<button class="button" type="submit">Back</button>
-		</form>
-			<br>
-			<br>
-		
-		<form action="/" method="get">
-			<p>Click here to exit:</p>
-			<br>
-			<button class=button type="submit">Exit</button>
-		</form>
 	</div>
 </body>
 	

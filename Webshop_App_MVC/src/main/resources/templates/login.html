@@ -5,26 +5,33 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 	<title>Log In</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 	
 <body>
+	<div class="head">
+		<form action="/" method="get">
+				<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+	</div>
 	<div class="userBox">
 		<h2 class="secondaryTitle">Login</h2>
 		<br>
-		<h4 class="lowTitle">Username</h4>
 		<form action="/shop/categories" method="post">
-			<input type="text" placeholder="Enter your name" name="username">
+			<h4 class="lowTitle">Username</h4>
+				<input type="text" placeholder="Enter your name" name="username">
 			<br>
 			<br>
-			<h4 class="lowTitle">Password</h4>				
-			<input type="text" placeholder="Enter your password" name="password">	
+			<h4 class="lowTitle">Password</h4>	
+				<input type="text" placeholder="Enter your password" name="password">	
 			<br>
 			<br>
 			<br>
-			<input class="button" type="submit" formaction="/admin" value="Submit as Admin">
+				<input class="button" type="submit" value="Submit as User">		
 			<br>
 			<br>
-			<input class="button" type="submit" value="Submit as User">		
+			<br>
+				<input class="button" type="submit" formaction="/admin" value="Submit as Admin">
 		</form>
 	</div>
 </body>

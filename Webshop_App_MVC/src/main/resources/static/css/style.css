@@ -21,7 +21,7 @@ html{
 	background-image:url("/pictures/wall.jpg");
 }
 .shop{
-	background-image: url("/pictures/wall2.jpg")
+	background-image: url("/pictures/desert.jpg")
 }
 
 .entryTitle {
@@ -53,6 +53,29 @@ html{
 	left: 7.5em;
 	margin: 0em;
 	font-size: 2em;
+}
+
+.exit{
+	background-color:transparent;
+	position:absolute;
+	right:0%;
+	top:1em;
+	color:gold
+}
+.exit:hover{
+	color:red;
+}
+
+.back{
+	background-color:transparent;
+	color:gold;
+	position:absolute;
+	right:0%;
+	top:3em; 
+}
+
+.back:hover{
+	color:green;
 }
 
 .mainMenu {
@@ -94,6 +117,16 @@ html{
 	border-radius: 400px;
 	box-sizing: content-box; 
 	background-color: transparent;
+}
+
+.userBox_failed{
+	position: absolute;
+	right: 32%;
+	top: 10em;
+	width: 20%;
+	height: 43em;
+	background-color: transparent;
+	text-align:center;
 }
 
 .secondaryTitle {
@@ -150,13 +183,37 @@ input[type=text], input[type=password] {
 
 .regBox{
 	position:absolute;
-	left:27%;
-	top:auto; 
+	top:16em; 
+	left:25%;
 	text-align:center;
 	width:40%;
+	height:30em;
 	padding: 40px; 
+	background-color:rgba(204, 153, 102, 0.4);
+	border-radius:50px; 
 	
 }
+.shopBox{
+	position:absolute;
+	top:30em; 
+	left:25%;
+	text-align:center;
+	width:40%;
+	height:30em;
+	padding: 40px; 
+	background-color:rgba(204, 153, 102, 0.4);
+	border-radius:50px; 
+}
+#shopBox_addToCart{
+	height:15em; 
+	top:25em; 
+}
+
+#cartBox{
+	top:3em; 
+	height:75em; 
+}
+
 p{
 	font-size:1.2em;
 	font-weight:bold;
@@ -179,11 +236,13 @@ p{
 	font-size:2em; 
 }
 
-#categoryButton{
+#categoryButton, #ratingButton, #addToCart,
+#cartButtonR, #cartButtonD, #cartButtonP{
 	position:absolute;
 	right:30%; 
 	width:40%; 
 }
+
 
 table{
 	width:100%;  
@@ -193,18 +252,19 @@ table{
 	background-attachment:fixed;
 	background-repeat:no-repeat;
 	text-align:left;
-	font-size:1.4em;
+	font-size:1em;
 	font-weight:bolder;
+	
 }
 td{
 	padding:20px; 
 }
 th{
 	padding:20px;
-	font-size:1.8em; 
+	font-size:1.3em; 
 }
 .tableContainer{
-	overflow-x:auto;
+	overflow-x: auto;
 }
 
 

@@ -77,7 +77,6 @@ public class UserController {
 				
 				db.insertUser(username, password, roleToString);
 				
-				List<Product> products=db.getAllProducts(); 
 				
 				returnPage = "completedRegistration.html";
 			}
@@ -209,6 +208,7 @@ public class UserController {
 			category = db.getCategoryById(formatted_id);
 			products = category.getProducts();
 		}
+	
 
 		model.addAttribute("productsList", products);
 		
@@ -286,7 +286,6 @@ public class UserController {
 				pay+=assistant;  
 			}
 		
-
 		model.addAttribute("cart", cart);
 		model.addAttribute("message", message);
 		model.addAttribute("pay", pay); 
@@ -356,11 +355,9 @@ public class UserController {
 		
 		}
 		
-		
 		db.close(); 
 		
 		return returnPage;
-		
 		
 	}
 	
@@ -368,6 +365,8 @@ public class UserController {
 	public String deleteFromTheCart(Model model,
 			@RequestParam(required = false, name = "selected_quantity") Integer quantity,
 			@RequestParam(required = false, name = "selected_product")  Integer selectedProductId) {
+		
+		String returnPage=null; 
 		
 		Database db=new Database(); 
 		
@@ -384,11 +383,13 @@ public class UserController {
 				}
 			}
 			
+			returnPage="deleteFromTheCart.html"; 
+			
 		}
 		
 		/** DECREASE THE QUANTITY OF THE SELECTED PRODUCT IN THE CART*/
 		
-		if (quantity!=null && selectedProductId!=null) {
+		else if (quantity!=null && selectedProductId!=null) {
 			
 			Product product=db.getProductById(selectedProductId);
 			
@@ -402,9 +403,16 @@ public class UserController {
 			}
 		}
 			
+			returnPage="deleteFromTheCart.html"; 
+			
 	}
 		
-		return "deleteFromTheCart.html";
+		else  {
+			
+			returnPage="emptyCart.html"; 
+		}
+		
+		return returnPage;
 	}
 	
 	@PostMapping("/shop/categories/ratings")
@@ -451,9 +459,6 @@ public class UserController {
 		return "ratingAdded.html"; 
 	}
 	
-	
-	
-
 	@GetMapping("/shop/categories/products/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 

@@ -5,12 +5,19 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 	<title>Categories</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+	
 </head>
 
 <body>
+	<div class="head">
+		<form action="/" method="get">
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+	</div>
 	<div class="regBox">
 		<form action="/shop/categories/products" method="post">
-			<h4 class="secondaryTitle"> Select category for your product:</h4>
+			<h4 class="secondaryTitle"> Select category:</h4>
 			<select class="roll" name= "categorie_var">
 				<option th:each="allcategories:${categories}" th:value="${allcategories.id}" th:text="${allcategories.name}" ></option>
 			</select>
@@ -18,13 +25,13 @@
 			<br>
 			<input class="button" id="categoryButton" type="submit" value="Submit">
 		</form>
-		
+		<br>
+		<br>
+		<br>
 		<form action="/shop/categories/ratings" method="post">
-				<h4 class="lowTitle">Click here to add rating to our product:</h4>
-				<br>
-				<button class="button" type="submit">Rating</button>
+			<h4 class="secondaryTitle">Rate the products:</h4>
+			<button class="button" id="ratingButton" type="submit">Rating</button>
 		</form>
-
 	</div>
 </body>
 	

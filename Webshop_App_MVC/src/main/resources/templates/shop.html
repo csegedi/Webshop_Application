@@ -4,26 +4,35 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 	<title>Shop</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 
 <body>
-	<div class="tableContainer">
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Price</th>
-			<th>Ingredients</th>
-			<th>Quantity</th>
-		</tr>
-		<tr th:each="products:${productsList}" >
-			<td th:text="${products.name}" >
-			<td th:text="${products.price}" ></td>
-			<td th:text="${products.ingredients}" ></td>
-			<td th:text="${products.quantity}" ></td>
-		</tr>
-	</table>
+	<div>
+		<form action="/shop/categories/products/logout"  method="get">
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+		<form action="/shop/categories" method="post">
+			<button class="back" type="submit"> <span class="material-icons">arrow_back</span></button>
+		</form>
 	</div>
-	<div class="regBox">
+	<div class="tableContainer">
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Ingredients</th>
+				<th>Quantity</th>	
+			</tr>
+			<tr th:each="products:${productsList}" >
+				<td th:text="${products.name}" >
+				<td th:text="${products.price}" ></td>
+				<td th:text="${products.ingredients}" ></td>
+				<td th:text="${products.quantity}" ></td>
+			</tr>
+		</table>
+	</div>
+	<div class="shopBox" id="shopBox_addToCart">
 		<form action="/shop/categories/products/cart" method="post" >
 			<h4 class="lowTitle">Please choose a product and add to your cart</h4>
 				<select class="roll" name="selected_product">
@@ -32,20 +41,8 @@
 				<br>
 				<input type="range" name="selected_quantity" min="0" max="50" value="0" oninput="this.nextElementSibling.value = this.value"  >
 				<output>0</output>
-				<button class="button" type="submit" value="submit">Add to cart</button>
-			</form>
-			<br>
-			<form action="/shop/categories" method="post">
-				<h4 class="lowTitle">Click here to return to categories:</h4>
-				<br>
-				<button class="button" type="submit">Back</button>
-			</form>
-			<br>
-			<form action="/shop/categories/products/logout" method="get">
-				<h4 class="lowTitle">Click here to exit:</h4>
-				<br>
-				<button class="button" type="submit">Exit</button>
-			</form>
+				<button class="button" id="addToCart" type="submit" value="submit">Add to cart</button>
+		</form>
 	</div>
 </body>
 	

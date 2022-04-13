@@ -4,21 +4,21 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 	<title>Failed Login!</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 
 <body>
-	<div class="userBox">
-		<h4 class="secondaryTitle">Wrong username or password!</h4>
-		<form action="/login" method="post">
-		<h4 class="lowtitle">Click here to restart the login:</h4>
-			<button class="button" type="submit">Back</button>
-		</form>
-
-		
+	<div>
 		<form action="/" method="get">
-		<h4 class="lowtitle">Click here to exit:</h4>
-			<button class=button type="submit">Exit</button>
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
 		</form>
+		<br>
+		<form action="/login" method="post">
+			<button class="back" type="submit"> <span class="material-icons">arrow_back</span></button>
+		</form>
+	</div>
+	<div class="userBox_failed">
+		<h4 class="secondaryTitle">Wrong username or password!</h4>
 	</div>
 </body>
 	
