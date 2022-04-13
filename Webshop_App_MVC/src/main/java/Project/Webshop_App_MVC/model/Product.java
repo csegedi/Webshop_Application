@@ -1,12 +1,11 @@
 package Project.Webshop_App_MVC.model;
 
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,6 +39,15 @@ public class Product {
 	
 	@Transient
 	private int actualCartQuantity; 
+	
+	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable (
+			name="products_ratings_mapping",
+			joinColumns= @JoinColumn (name="product_id"),
+			inverseJoinColumns=@JoinColumn (name="rating")
+			)
+	private List<Rating>ratings; 
+
 	
 	
 	public Product() {
@@ -89,11 +97,21 @@ public class Product {
 	public int getQuantity() {
 		return quantity;
 	}
+	
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
 
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
 
 	public void setPrice(double price) {
 		this.price = price;
@@ -107,6 +125,7 @@ public class Product {
 	public void setActualCartQuantity(int actualCartQuantity) {
 		this.actualCartQuantity = actualCartQuantity;
 	}
+	
 	
 	public void cartIncrease (int quantity) {
 		

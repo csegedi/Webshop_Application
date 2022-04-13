@@ -1,12 +1,19 @@
 package Project.Webshop_App_MVC.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,11 +35,18 @@ public class User {
 	@Column (name="role")
 	private Role role;
 	
+	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable (
+			name="user_products_ratingtable",
+			joinColumns= @JoinColumn (name="user_id"),
+			inverseJoinColumns=@JoinColumn (name="product_id")
+			)
+	private List<Product>productRatings;
+
 	public User() {
 		
 	}
 	
-
 	public User(String username, String password) {
 		super();
 		this.username = username;
@@ -69,6 +83,12 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+
+	public List<Product> getProductRatings() {
+		return productRatings;
 	} 
+	
 	
 }

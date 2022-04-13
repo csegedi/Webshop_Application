@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import Project.Webshop_App_MVC.database.Database;
 import Project.Webshop_App_MVC.model.Product;
 import Project.Webshop_App_MVC.model.Product_Category;
+import Project.Webshop_App_MVC.model.Rating;
 import Project.Webshop_App_MVC.model.Role;
 import Project.Webshop_App_MVC.model.User;
 
@@ -73,8 +74,11 @@ public class UserController {
 				user.setPassword(password);
 				user.setRole(Role.CUSTOMER);
 				String roleToString = Role.CUSTOMER.toString();
-
+				
 				db.insertUser(username, password, roleToString);
+				
+				List<Product> products=db.getAllProducts(); 
+				
 				returnPage = "completedRegistration.html";
 			}
 
@@ -129,6 +133,17 @@ public class UserController {
 
 					response.addCookie(cookie);
 					response.addCookie(cookie2);
+					
+					if (current.getProductRatings().isEmpty()) {
+						List<Product> products=db.getAllProducts(); 
+						
+						for (int i=0; i<products.size(); i++) {
+							Product product=products.get(i);
+							current.getProductRatings().add(product);
+							db.updateUser(current); 
+						}
+						
+					}
 
 					model.addAttribute("categories", categorie_list);
 					returnPage = "categories.html";
@@ -223,7 +238,6 @@ public class UserController {
 			message = "You have added more products to your cart, what we own in our storage at the moment!"
 					+ "\nPlease check the quantity of the selected product!";
 		} 
-	
 		
 		/** ADD PRODUCT TO THE CART*/
 		
@@ -237,10 +251,13 @@ public class UserController {
 				}
 			}
 			
-
-			if (assistant == 0) {                              //if the selected product isn't in the cart (new product)
-				product.setActualCartQuantity(quantity);       //add the product to cart with the incoming quantity
-				cart.add(product);
+			if (assistant == 0) {                              //if the selected product isn't in the cart (new product)/add the product to cart with the incoming quantity
+				product.setActualCartQuantity(quantity);
+				if (product.getActualCartQuantity()!=0) {
+					cart.add(product);  
+					
+				}
+				
 
 			} 
 			
@@ -259,7 +276,6 @@ public class UserController {
 		}
 		
 		}
-		
 		
 		/**CALCULATION OF TOTAL PRICE  */
 		
@@ -285,13 +301,46 @@ public class UserController {
 	public String purchasing (Model model) {
 		
 		Database db=new Database(); 
+		String returnPage=null; 
+		boolean buyOverFlow=false; 
+		ArrayList<Product>toMuchProducts=new ArrayList<Product>(); 
 		
-		model.addAttribute("cart", cart); 
+
+		for (int i=0; i<cart.size(); i++) {
+			Product current=cart.get(i); 
+			if (current.getActualCartQuantity()>current.getQuantity()) {
+				buyOverFlow=true;
+				toMuchProducts.add(current);
+			}
+		}
+		
+		if(buyOverFlow==true) {
+			model.addAttribute("overflow", toMuchProducts); 
+			for (int i=0; i<toMuchProducts.size(); i++) {
+				Product current=toMuchProducts.get(i); 
+				for (int y=0; y<cart.size(); y++) {
+					if(current.getName().equals(cart.get(y).getName())) {
+						cart.remove(cart.get(y));
+					}
+				}
+			}
+			
+			returnPage="toMuchProduct.html"; 
+		}
+		
+		else if (cart.isEmpty()) {
+			
+			returnPage="emptyCart.html"; 
+		}
+		
+		else {
+			
+		model.addAttribute("cart", cart);
 		
 		for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {
 			
 			Product current=cart.get(cartIndex); 
-			current.quantityDecrease();                                 
+			//current.quantityDecrease();                                 
 			
 			db.UpdateQuantity(current.getId(), current.getQuantity()); 	//decrease from the storage
 		}
@@ -303,9 +352,14 @@ public class UserController {
 		
 		cart.clear(); 
 		
+		returnPage="buy.html"; 
+		
+		}
+		
+		
 		db.close(); 
 		
-		return "buy.html";
+		return returnPage;
 		
 		
 	}
@@ -351,8 +405,53 @@ public class UserController {
 	}
 		
 		return "deleteFromTheCart.html";
-		
 	}
+	
+	@PostMapping("/shop/categories/ratings")
+	public String selectProductToRating(Model model) {
+		
+		Database db=new Database(); 
+		List<Product>productsList=db.getAllProducts(); 
+		
+		model.addAttribute("products", productsList);
+
+		return "ratingPage.html";
+	}
+	
+	@PostMapping("shop/categories/ratings/add")
+	public String addRating (Model model,
+			@RequestParam(required = false, name="selectedProduct") Integer productId,
+			@RequestParam (required = false, name="givenRating") Integer givenRating,
+			@CookieValue(name = "cookie_Username") String username,
+			@CookieValue(name = "cookie_Password") String password) {
+		
+		Database db=new Database();
+		Product currentProduct=db.getProductById(productId); 
+
+		List<User> users=db.getUsersByUsernamePassword(username, password); 
+		User user=users.get(0); 
+		List<Product>userProductsToRate=user.getProductRatings(); 
+		Rating rating=new Rating(); 
+		rating.setGrade(givenRating);
+		
+		
+		if (givenRating!=null) {
+			for (int i=0; i<userProductsToRate.size(); i++) {
+				Product currentProductByTheUser=userProductsToRate.get(i); 
+				if (currentProductByTheUser.getName().equals(currentProduct.getName())) {
+					userProductsToRate.remove(currentProductByTheUser); 
+					currentProduct.getRatings().add(rating); 
+					db.updateProduct(currentProduct); 
+					db.updateUser(user); 
+					
+				}
+			}
+		}
+
+		return "ratingAdded.html"; 
+	}
+	
+	
 	
 
 	@GetMapping("/shop/categories/products/logout")

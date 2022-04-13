@@ -131,7 +131,22 @@ public List<User> getAllUser() {
 		session.close(); 
 		
 	}
-	
+		public void insertProductandUserToRatings(int id, int id2) {
+			
+			Session session=sessionFactory.openSession();
+			session.beginTransaction();
+			
+			Query query=session.createNativeQuery("INSERT INTO user_products_ratingtable (user_id, product_id) VALUES (:newUserId, :incomingProductId)");
+			query.setParameter("newUserId", id);
+			query.setParameter("incomingProductId", id2); 
+			
+			query.executeUpdate(); 
+			
+			session.getTransaction().commit();; 
+			session.close();
+
+	}
+		
 	public List<Product> getAllProducts () {
 			
 		List<Product> list=null; 
@@ -148,7 +163,6 @@ public List<User> getAllUser() {
 		return list; 
 				
 	}
-	
 	
 	 public List <Product> getProductByName(String name) {
 		
@@ -267,11 +281,39 @@ public List<User> getAllUser() {
 		
 	}
 	
+		public void updateUser(User user) {
+			
+			Session session=sessionFactory.openSession(); 
+			session.beginTransaction(); 
+			
+			session.update(user);
+			
+			session.getTransaction().commit();
+			session.close();
+		
+	}
+		public void updateProduct(Product currentProduct) {
+			
+			Session session=sessionFactory.openSession(); 
+			session.beginTransaction(); 
+			
+			session.update(currentProduct);
+			
+			session.getTransaction().commit();
+			session.close();
+		
+		}	
 
 	public void close() {
 		
 		sessionFactory.close();
 	}
+
+	
+
+
+
+
 
 	
 

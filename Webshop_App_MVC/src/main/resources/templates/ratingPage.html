@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<p>Rate my ass!!!!!</p>
+
+<form action="/shop/categories/ratings/add" method="post">
+			<h4 class="secondaryTitle"> Select product to rate:</h4>
+			<select class="roll" name= "selectedProduct">
+				<option th:each="allProducts:${products}" th:value="${allProducts.id}" th:text="${allProducts.name}" ></option>
+			</select>
+			<br>
+			<br>
+			<input type="radio" id="index0" name="givenRating" value=1 >
+			<label  th:text="poor" for="index0"></label><br>
+			<input type="radio" id="index1" name=givenRating value=2>
+			<label  th:text="bad" for="index1"></label><br>
+			<input type="radio" id="index2" name=givenRating value=3 >
+			<label  th:text="average" for="index2"></label><br>
+			<input type="radio" id="index3" name=givenRating value=4 >
+			<label  th:text="good" for="index3"></label><br>
+			<input type="radio" id="index4" name=givenRating value=5 >
+			<label  th:text="perfect" for="index4"></label><br>
+			<input class="button" type="submit" value="Submit">
+		</form>
+
+</body>
+</html>
