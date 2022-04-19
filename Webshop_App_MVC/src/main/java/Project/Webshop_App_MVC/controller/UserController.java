@@ -339,14 +339,16 @@ public class UserController {
 		for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {
 			
 			Product current=cart.get(cartIndex); 
+			int newQuantity=current.getQuantity()-current.getActualCartQuantity();
 			//current.quantityDecrease();                                 
 			
-			db.UpdateQuantity(current.getId(), current.getQuantity()); 	//decrease from the storage
+			db.UpdateQuantity(current.getId(), newQuantity); 	//decrease from the storage
 		}
 		
 		for (int cartIndex=0; cartIndex<cart.size(); cartIndex++) {   //delete from the cart
 			Product current=cart.get(cartIndex);
 			current.setActualCartQuantity(0); 
+		
 		}
 		
 		cart.clear(); 
