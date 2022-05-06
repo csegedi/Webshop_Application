@@ -47,7 +47,9 @@ public class Product {
 			inverseJoinColumns=@JoinColumn (name="rating")
 			)
 	private List<Rating>ratings; 
-
+	
+	@Column (name="averageRating")
+	private double averageRating; 
 	
 	
 	public Product() {
@@ -60,6 +62,8 @@ public class Product {
 		this.price = price;
 		this.ingredients = ingredients;
 		this.quantity = quantity;
+		this.averageRating=0; 
+		
 	}
 
 	public int getId() {
@@ -104,7 +108,6 @@ public class Product {
 	}
 	
 
-
 	public List<Rating> getRatings() {
 		return ratings;
 	}
@@ -112,6 +115,22 @@ public class Product {
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
+	
+	
+	public double getAverageRating() {
+		return averageRating;
+	}
+
+	public void setAverageRating() {
+		
+			int assistant=0;
+			
+			for (int i=0; i<ratings.size(); i++) {
+				assistant+=ratings.get(i).getGrade(); 
+			}
+			averageRating=assistant/ratings.size(); 
+			
+		}
 
 	public void setPrice(double price) {
 		this.price = price;
@@ -149,6 +168,8 @@ public class Product {
 		
 		this.quantity=decrease; 
 	}
+	
+	
 	
 
 }

@@ -23,12 +23,14 @@
 				<th>Price</th>
 				<th>Ingredients</th>
 				<th>Quantity</th>	
+				<th>Ratings</th>
 			</tr>
 			<tr th:each="products:${productsList}" >
 				<td th:text="${products.name}" >
 				<td th:text="${products.price}" ></td>
 				<td th:text="${products.ingredients}" ></td>
 				<td th:text="${products.quantity}" ></td>
+				<td th:text="${products.averageRating}" ></td>
 			</tr>
 		</table>
 	</div>

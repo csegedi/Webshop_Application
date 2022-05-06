@@ -196,10 +196,11 @@ public class UserController {
 		if (category_id != null) {            //got the RequestParam by the first entry
 
 			category = db.getCategoryById(category_id);
-			products = category.getProducts();
+			products = category.getProducts();          
 			String categoryString = String.valueOf(category_id);     
 			Cookie cookie = new Cookie("categorie_var_cookie", categoryString);   
 			response.addCookie(cookie);
+	
 		}
 
 		else {                                            //RequestParam don't exist, CookieValue is used
@@ -207,8 +208,8 @@ public class UserController {
 			int formatted_id = Integer.valueOf(category_id_cookie);
 			category = db.getCategoryById(formatted_id);
 			products = category.getProducts();
+			
 		}
-	
 
 		model.addAttribute("productsList", products);
 		
@@ -418,12 +419,17 @@ public class UserController {
 	}
 	
 	@PostMapping("/shop/categories/ratings")
-	public String selectProductToRating(Model model) {
+	public String selectProductToRating(Model model, 	
+			@CookieValue(name = "cookie_Username") String username,
+			@CookieValue(name = "cookie_Password") String password) {
 		
 		Database db=new Database(); 
-		List<Product>productsList=db.getAllProducts(); 
+		List<User> users=db.getUsersByUsernamePassword(username, password);
+		User current=users.get(0); 
+		List<Product> listOfTheProductWithoutRate=current.getProductRatings(); 
+	 
 		
-		model.addAttribute("products", productsList);
+		model.addAttribute("products", listOfTheProductWithoutRate);
 
 		return "ratingPage.html";
 	}
@@ -442,23 +448,32 @@ public class UserController {
 		User user=users.get(0); 
 		List<Product>userProductsToRate=user.getProductRatings(); 
 		Rating rating=new Rating(); 
-		rating.setGrade(givenRating);
-		
+		String returnPage=null; 
 		
 		if (givenRating!=null) {
+			rating.setGrade(givenRating);
 			for (int i=0; i<userProductsToRate.size(); i++) {
 				Product currentProductByTheUser=userProductsToRate.get(i); 
 				if (currentProductByTheUser.getName().equals(currentProduct.getName())) {
 					userProductsToRate.remove(currentProductByTheUser); 
 					currentProduct.getRatings().add(rating); 
+					currentProduct.setAverageRating(); 
 					db.updateProduct(currentProduct); 
 					db.updateUser(user); 
 					
 				}
 			}
+			
+			returnPage="ratingAdded.html"; 
+			
+		}
+		else {
+			
+			returnPage="emptyRatingValue.html"; 
+			
 		}
 
-		return "ratingAdded.html"; 
+		return returnPage; 
 	}
 	
 	@GetMapping("/shop/categories/products/logout")

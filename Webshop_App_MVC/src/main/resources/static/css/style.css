@@ -208,6 +208,9 @@ input[type=text], input[type=password] {
 	height:15em; 
 	top:25em; 
 }
+#rating{
+	top:5em; 
+}
 
 #cartBox{
 	top:3em; 
@@ -221,6 +224,13 @@ p{
 	text-shadow: 2px 2px black;
 	margin:0em; 
 }
+
+label{
+	font-weight:bold;
+	text-align:left;
+}
+
+
 .roll{
 	width:50%;
 	border-radius:30px; 
