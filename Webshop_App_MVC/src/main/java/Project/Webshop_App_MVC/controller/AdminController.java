@@ -121,9 +121,9 @@ public class AdminController {
 		else if (((name != null) && (name.isBlank() == false)) && (price != null)
 				&& ((ingredients != null) && (name.isBlank() == false)) && (quantity != null)) {
 
-			Product product = new Product(name, price, ingredients, quantity);
+			Product product = new Product(name, price, ingredients, quantity, 0);
 
-			db.insertNewProduct(product.getName(), product.getPrice(), product.getIngredients(), product.getQuantity());
+			db.insertNewProduct(product.getName(), product.getPrice(), product.getIngredients(), product.getQuantity(), product.getAverageRating());
 			Product_Category pc = db.getCategoryById(category_id);
 			List<Product> product_list = pc.getProducts();
 			product_list.add(product);

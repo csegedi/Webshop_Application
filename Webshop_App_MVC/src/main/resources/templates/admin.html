@@ -1,106 +1,83 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Admin</title>
-		<link rel="stylesheet" href="/css/style.css">
-	</head>
-	
-	<body>
-	
-		<h4>Add category: </h4>
-		
-			<form action="/admin/newItem" method="post">
-		
-				<input type="text" name="category" >
-					<br>
-					<br>
-				<input type="submit">
-				
-			</form>
-		
+<html class="admin">
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+</head>
+
+<body>
+	<div>
+		<form action="/shop/categories/products/logout"  method="get">
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+	</div>
+	<div class="shopBox" id="cartBox">
+		<h4 class="lowTitle">Add category: </h4>
+		<form action="/admin/newItem" method="post">
+			<input type="text" name="category" >
+			<br>
+			<br>
+			<input class="button" id="adminButton" type="submit" value="Submit">
+		</form>
 		<br>
-		
-		<h4>Add products: </h4>
-		
-			<form action="/admin/newItem" method="post" >
-				<p>Name of the product: </p>
-					<input type="text" name="name" >
-						<br>
-				<p>The price of the product:</p>
-					<input type="number" name="price" >
-						<br>
-				<p>The ingredients:</p>
-					<input type="text" name="ingredients">
-						<br>
-				<p>The current quantity of the product:</p>
-					<input type="number" name="quantity" >
-						<br>
-					
-				<p> Select category for your product:</p>
-					
-					<select name= "categorie_var">
-					
-						<option th:each="allcategories:${categories}" th:value="${allcategories.id}" th:text="${allcategories.name}" ></option>
-					
-					
-					</select>
-						
-				
-				<br>
-				<br>
-				<input type="submit">
-			</form>
-			
-		<h4>Changes: </h4>
-		
-			<p>Change the price of the selected product: </p>
-				
-				<form action="/admin/change" method="post">
-				
-					<select name="selected_pprice" >
-					
-						<option th:each="product_list:${list}" th:value="${product_list.id}" th:text="${product_list.name}" ></option>
-					
-					</select>
-						
-						<input type="number" name="price"> 
-						
-						<input type="submit">
-						
-				</form>
-				
+		<br>
+		<br>
+		<h4 class="lowTitle">Add products: </h4>
+		<form action="/admin/newItem" method="post" >
+		<br>
+		<p>Name of the product: </p>
+			<input type="text" name="name" >
+		<br>
+		<p>The price of the product:</p>
+			<input type="number" name="price" >
+		<br>
+		<p>The ingredients:</p>
+		<input type="text" name="ingredients">
+		<br>
+		<p>The current quantity of the product:</p>
+		<input type="number" name="quantity" >
+		<br>
+		<p> Select category for your product:</p>
+			<select class="roll" name= "categorie_var">
+				<option th:each="allcategories:${categories}" th:value="${allcategories.id}" th:text="${allcategories.name}" ></option>
+			</select>	
+		<br>
+		<br>
+			<input class="button" id="adminButton" type="submit" value="Submit">
+		</form>
+		<br>
+		<br>
+		<br>
+		<h4 class="lowTitle" >Changes: </h4>
+		<br>
+		<p>Change the price of the selected product: </p>
+		<form action="/admin/change" method="post">
+			<select class="roll" name="selected_pprice" >
+				<option th:each="product_list:${list}" th:value="${product_list.id}" th:text="${product_list.name}" ></option>
+			</select>
+			<input type="number" name="price"> 
 			<br>
 			<br>
-			
-			<p>Change the quantity of the selected product: </p>
-				
-				<form action="/admin/change" method="post" >
-				
-					<select name="selected_pquantity" >
-					
-						<option th:each="product_list:${list}" th:value="${product_list.id}" th:text="${product_list.name}" ></option>
-					
-					</select>
-						<input type="number" name="quantity"  >
-					
-						<input type="submit">
-			
-				</form>	
-			
+			<input class="button" id="adminButton" type="submit" value="Submit">		
+		</form>
+		<br>
+		<br>
+		<br>
+		<p>Change the quantity of the selected product: </p>
+		<form action="/admin/change" method="post" >
+			<select class="roll" name="selected_pquantity" >
+				<option th:each="product_list:${list}" th:value="${product_list.id}" th:text="${product_list.name}" ></option>
+			</select>
+			<input type="number" name="quantity"  >
 			<br>
 			<br>
-				
-				<form action="/" method="get">
-				
-					<p>Click here to exit:</p>
-					
-						<br>
-				
-						<button type="submit">exit</button>
-				</form>		
-	
-	</body>
-	
+			<input class="button" id="adminButton" type="submit" value="Submit">
+		</form>	
+		<br>
+		<br>		
+	</div>
+</body>
 	
 </html>

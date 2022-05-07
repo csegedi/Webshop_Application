@@ -114,16 +114,17 @@ public List<User> getAllUser() {
 
 	}
 	
-	public void insertNewProduct(String name, double d, String ingredients, int quantity) {
+	public void insertNewProduct(String name, double d, String ingredients, int quantity, double init) {
 		
 		Session session=sessionFactory.openSession(); 
 		session.beginTransaction(); 
 		
-		Query query=session.createNativeQuery("INSERT INTO products (name, price, ingredients, quantity) VALUES (:newName, :newPrice, :newIngredients, :newQuantity)"); 
+		Query query=session.createNativeQuery("INSERT INTO products (name, price, ingredients, quantity, averageRating) VALUES (:newName, :newPrice, :newIngredients, :newQuantity, :init )"); 
 		query.setParameter("newName", name); 
 		query.setParameter("newPrice", d); 
 		query.setParameter("newIngredients", ingredients); 
 		query.setParameter("newQuantity", quantity); 
+		query.setParameter("init", init); 
 		
 		query.executeUpdate(); 
 		

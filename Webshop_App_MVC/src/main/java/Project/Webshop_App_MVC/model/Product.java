@@ -56,13 +56,13 @@ public class Product {
 		super();
 	}
 
-	public Product(String name, Double price, String ingredients, int quantity) {
+	public Product(String name, Double price, String ingredients, int quantity, int initAverageRating) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.ingredients = ingredients;
 		this.quantity = quantity;
-		this.averageRating=0; 
+		this.averageRating=initAverageRating; 
 		
 	}
 
