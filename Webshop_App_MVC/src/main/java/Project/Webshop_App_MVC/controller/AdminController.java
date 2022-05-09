@@ -126,12 +126,19 @@ public class AdminController {
 			db.insertNewProduct(product.getName(), product.getPrice(), product.getIngredients(), product.getQuantity(), product.getAverageRating());
 			Product_Category pc = db.getCategoryById(category_id);
 			List<Product> product_list = pc.getProducts();
+			List<User> allUsers=db.getAllUser(); 
 			product_list.add(product);
 
 			List<Product> products = db.getProductByName(name);
 			int productId = products.get(0).getId();
 
 			db.refreshMapping(pc.getId(), productId);
+			
+			for (int i=0; i<allUsers.size(); i++) {
+				int currentUserId=allUsers.get(i).getId(); 
+				db.refreshUserRatingMapping(currentUserId, productId); 
+			}
+			
 
 			newItemText = "New Product: " + product.getName() + " " + product.getPrice() + " "
 					+ product.getIngredients() + " " + product.getQuantity() + " " + "category: " + pc.getName();

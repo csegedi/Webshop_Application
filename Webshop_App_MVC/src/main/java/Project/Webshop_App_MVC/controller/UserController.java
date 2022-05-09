@@ -1,6 +1,7 @@
 package Project.Webshop_App_MVC.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -191,23 +192,28 @@ public class UserController {
 
 		Database db = new Database();
 		Product_Category category = null;
-		List<Product> products = null;
+		ArrayList<Product>products=new ArrayList<Product>(); 
 		
 		if (category_id != null) {            //got the RequestParam by the first entry
 
 			category = db.getCategoryById(category_id);
-			products = category.getProducts();          
+			 
+			
+			HashSet<Product> deleteDuplicate=new HashSet<Product>(category.getProducts()); 
+			products.addAll(deleteDuplicate); 
+		
 			String categoryString = String.valueOf(category_id);     
 			Cookie cookie = new Cookie("categorie_var_cookie", categoryString);   
 			response.addCookie(cookie);
-	
+		
 		}
 
 		else {                                            //RequestParam don't exist, CookieValue is used
 			
 			int formatted_id = Integer.valueOf(category_id_cookie);
 			category = db.getCategoryById(formatted_id);
-			products = category.getProducts();
+			HashSet<Product> deleteDuplicate=new HashSet<Product>(category.getProducts()); 
+			products.addAll(deleteDuplicate); 
 			
 		}
 
@@ -425,8 +431,8 @@ public class UserController {
 		
 		Database db=new Database(); 
 		List<User> users=db.getUsersByUsernamePassword(username, password);
-		User current=users.get(0); 
-		List<Product> listOfTheProductWithoutRate=current.getProductRatings(); 
+		User currentUser=users.get(0); 
+		List<Product> listOfTheProductWithoutRate=currentUser.getProductRatings(); 
 	 
 		
 		model.addAttribute("products", listOfTheProductWithoutRate);
@@ -443,25 +449,32 @@ public class UserController {
 		
 		Database db=new Database();
 		Product currentProduct=db.getProductById(productId); 
+		List<Rating>listOfTheRatingsOfTheCurrentProduct=currentProduct.getRatings(); 
 
 		List<User> users=db.getUsersByUsernamePassword(username, password); 
 		User user=users.get(0); 
-		List<Product>userProductsToRate=user.getProductRatings(); 
-		Rating rating=new Rating(); 
+		List<Product>userProductsToRate=user.getProductRatings();   
 		String returnPage=null; 
 		
+
 		if (givenRating!=null) {
-			rating.setGrade(givenRating);
+			Rating rating=new Rating();
+			rating.setGrade(givenRating); 
 			for (int i=0; i<userProductsToRate.size(); i++) {
 				Product currentProductByTheUser=userProductsToRate.get(i); 
 				if (currentProductByTheUser.getName().equals(currentProduct.getName())) {
 					userProductsToRate.remove(currentProductByTheUser); 
-					currentProduct.getRatings().add(rating); 
-					currentProduct.setAverageRating(); 
-					db.updateProduct(currentProduct); 
-					db.updateUser(user); 
-					
+					listOfTheRatingsOfTheCurrentProduct.add(rating); 
+					break; 
 				}
+				
+			}
+			currentProduct.setAverageRating();	
+			db.updateProduct(currentProduct); 
+			db.updateUser(user); 
+			
+			for (int i=0; i<currentProduct.getRatings().size(); i++) {
+				System.out.println (currentProduct.getRatings().get(i).getGrade()); 
 			}
 			
 			returnPage="ratingAdded.html"; 
@@ -476,6 +489,8 @@ public class UserController {
 		return returnPage; 
 	}
 	
+
+
 	@GetMapping("/shop/categories/products/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 

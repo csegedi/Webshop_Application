@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 
 import Project.Webshop_App_MVC.model.Product;
 import Project.Webshop_App_MVC.model.Product_Category;
+import Project.Webshop_App_MVC.model.Rating;
 import Project.Webshop_App_MVC.model.User;
 
 public class Database {
@@ -266,6 +267,8 @@ public List<User> getAllUser() {
 	
 	}
 	
+	
+	
 	public void refreshMapping(int category_id, int product_id) {
 		
 		Session session=sessionFactory.openSession(); 
@@ -281,6 +284,23 @@ public List<User> getAllUser() {
 		session.close(); 
 		
 	}
+	
+	public void refreshUserRatingMapping(int currentUserId, int productId) {
+		
+		Session session=sessionFactory.openSession(); 
+		session.beginTransaction(); 
+		
+		Query query=session.createNativeQuery("INSERT INTO user_products_ratingtable (user_id, product_id) VALUES (:newUser_Id, :newProduct_Id)"); 
+		query.setParameter("newUser_Id", currentUserId);
+		query.setParameter("newProduct_Id", productId); 
+		
+		query.executeUpdate(); 
+		
+		session.getTransaction().commit();; 
+		session.close();
+		
+	}
+	
 	
 		public void updateUser(User user) {
 			
@@ -309,6 +329,79 @@ public List<User> getAllUser() {
 		
 		sessionFactory.close();
 	}
+
+	public void saveRating(int id, Integer givenRating) {
+	
+		Session session=sessionFactory.openSession(); 
+		session.beginTransaction(); 
+		
+		Query query=session.createNativeQuery("INSERT INTO products_ratings_mapping (product_id, rating_id) VALUES (:newProduct_Id, :newRating)"); 
+		
+		query.setParameter("newProduct_Id", id); 
+		query.setParameter("newRating", givenRating);
+		
+		query.executeUpdate(); 
+		
+		session.getTransaction().commit();; 
+		session.close();
+		
+		
+	}
+
+	public Rating getRatingById(Integer givenRating) {
+		
+		Session session=sessionFactory.openSession(); 
+		session.beginTransaction(); 
+		
+		Rating rating=session.get(Rating.class, givenRating); 
+		 
+		session.getTransaction().commit();; 
+		session.close(); 
+	
+		return rating;
+		
+	}
+
+	public void insertRating(Integer givenRating) {
+		
+		Session session=sessionFactory.openSession(); 
+		session.beginTransaction(); 
+		
+		Query query=session.createNativeQuery("INSERT INTO ratings (grade) VALUES (:newGrade)"); 
+		query.setParameter("newGrade", givenRating); 
+		
+		query.executeUpdate(); 
+		
+		session.getTransaction().commit();; 
+		session.close(); 
+		
+	}
+
+	public List<Product> getProductsFromCategory(Integer category_id) {
+		
+		
+		Session session=sessionFactory.openSession(); 
+		session.beginTransaction(); 
+		
+		List<Product>products=null; 
+		
+		Query query=session.createNativeQuery("SELECT * FROM categories_products_mapping WHERE categorie_id=:incoming ", Product.class);
+		query.setParameter("incoming", category_id); 
+		 
+		products=query.getResultList(); 
+		
+		session.getTransaction().commit();; 
+		session.close(); 
+	
+		return products;
+		
+	
+	}
+
+
+
+
+	
 
 	
 

@@ -1,6 +1,7 @@
 package Project.Webshop_App_MVC.model;
 
 
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -44,7 +46,7 @@ public class Product {
 	@JoinTable (
 			name="products_ratings_mapping",
 			joinColumns= @JoinColumn (name="product_id"),
-			inverseJoinColumns=@JoinColumn (name="rating")
+			inverseJoinColumns=@JoinColumn (name="rating_id")
 			)
 	private List<Rating>ratings; 
 	
@@ -56,7 +58,7 @@ public class Product {
 		super();
 	}
 
-	public Product(String name, Double price, String ingredients, int quantity, int initAverageRating) {
+	public Product(String name, Double price, String ingredients, int quantity, double initAverageRating) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -108,15 +110,12 @@ public class Product {
 	}
 	
 
+	
+	
 	public List<Rating> getRatings() {
 		return ratings;
 	}
 
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
-	
-	
 	public double getAverageRating() {
 		return averageRating;
 	}
@@ -128,7 +127,7 @@ public class Product {
 			for (int i=0; i<ratings.size(); i++) {
 				assistant+=ratings.get(i).getGrade(); 
 			}
-			averageRating=assistant/ratings.size(); 
+			averageRating=assistant/(double)ratings.size(); 
 			
 		}
 
