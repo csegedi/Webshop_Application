@@ -1,61 +1,44 @@
 <!DOCTYPE html>
 <html class="shop">
 
-	<head>
-		<meta charset="UTF-8">
-		<title>Delete is complete</title>
-		<link rel="stylesheet" href="/css/style.css">
-	</head>
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Delete is complete</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+</head>
 
-	<body>
+<body>
+	<div>
+		<form action="/shop/categories/products/logout"  method="get">
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+	</div>
 	
-		<p>You have changed your cart's content</p>
-		
-			<form action="/shop/categories/products/cart" method="post">
-				
-				<p>Click here to step back to your cart:</p>
-					
-					<br>
-				
-						<button type="submit">Back to your cart</button>
-			</form>
-		
-			<form action="/shop/categories" method="post">
-				
-				<p>Click here to select a category:</p>
-					
-					<br>
-				
-						<button type="submit">Categories</button>
-			</form>
-			
-				<br>
-				<br>
-			
-			<form action="/shop/categories/products" method="post">
-				
-				<p>Click here to select products:</p>
-					
-					<br>
-				
-						<button type="submit">Products</button>
-			</form>
-			
-				<br>
-				<br>
-			
-			<form action="/shop/categories/products/logout" method="get">
-				
-				<p>Click here to exit:</p>
-					
-					<br>
-				
-						<button type="submit">Exit</button>
-			</form>
-			
-	
-	
-	
-	</body>
+	<div class="shopBox" id="shortBox">
+		<h4 class="lowTitle">You have changed your cart's content</h4>
+		<form action="/shop/categories/products/cart" method="post">
+		<p>Click here to step back to your cart:</p>
+		<br>
+			<button class="button" type="submit">Back to your cart</button>
+		</form>
+		<br>
+		<br>
+		<br>
+		<form action="/shop/categories" method="post">
+		<p>Click here to select a category:</p>
+		<br>
+			<button class="button" type="submit">Categories</button>
+		</form>
+		<br>
+		<br>
+		<br>
+		<form action="/shop/categories/products" method="post">
+		<p>Click here to select products:</p>
+		<br>
+		<button class="button" type="submit">Products</button>
+		</form>
+	</div>
+</body>
 
 </html>

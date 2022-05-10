@@ -164,12 +164,14 @@ input[type=number]{
 }
 
 .button {
+	position:absolute;
+	right:25%; 
 	display: block;
 	font-family: Copperplate, Papyrus, fantasy;
 	font-size: 1em;
 	font-weight: bold;
 	border-radius: 30px;
-	width: 100%;
+	width: 48%;
 	height: 60px;
 	border: 4px outset black;
 	background-image:linear-gradient(to top, gold, yellow, orange, red); 
@@ -201,13 +203,14 @@ input[type=number]{
 	border-radius:50px; 
 	
 }
+
 .shopBox{
 	position:absolute;
 	top:30em; 
 	left:25%;
 	text-align:center;
 	width:40%;
-	height:30em;
+	height:25em;
 	padding: 40px; 
 	background-color:rgba(204, 153, 102, 0.4);
 	border-radius:50px; 
@@ -220,9 +223,18 @@ input[type=number]{
 	top:5em; 
 }
 
+#shortBox{
+	height:25em; 
+	top:5em; 
+}
+
 #cartBox{
 	top:3em; 
-	height:75em; 
+	height:60em; 
+}
+#adminBox{
+	top:5em;
+	height:85em; 
 }
 
 p{
@@ -240,7 +252,9 @@ label{
 
 
 .roll{
-	width:50%;
+	position:absolute;
+	left:22%; 
+	width:60%;
 	border-radius:30px; 
 	font-family:Copperplate, Papyrus, fantasy;
 	font-size:1.5em; 
@@ -253,14 +267,6 @@ label{
 .roll:hover{
 	font-size:2em; 
 }
-
-#categoryButton, #ratingButton, #addToCart,
-#cartButtonR, #cartButtonD, #cartButtonP, #adminButton{
-	position:absolute;
-	right:30%; 
-	width:40%; 
-}
-
 
 table{
 	width:100%;  

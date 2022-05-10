@@ -17,7 +17,7 @@
 			<button class="back" type="submit"> <span class="material-icons">arrow_back</span></button>
 		</form>
 	</div>
-	<div class="regBox" id="cartBox">
+	<div class="shopBox" id="cartBox">
 		<h2 th:text="${message}" class="secondaryTitle" ></h2>
 			<div class="tableContainer">
 				<table>
@@ -41,7 +41,7 @@
 					</select>
 					<br>
 					<br>
-					<button class="button" id="cartButtonR" type="submit">Remove</button>
+					<button class="button"type="submit">Remove</button>
 					<br>
 					<br>
 					<br>
@@ -55,7 +55,7 @@
 					<br>
 					<input type="range" name="selected_quantity" min="0" max="50" value="0" oninput="this.nextElementSibling.value = this.value"  >
 					<output>0</output>
-					<button class="button" id="cartButtonD" type="submit">Decrease the quantity</button>
+					<button class="button" type="submit">Decrease the quantity</button>
 					<br>
 					<br>
 					<br>
@@ -63,7 +63,7 @@
 			</form>
 			<form action="/shop/categories/products/cart/purchase" method="post">
 				<h4 class="lowTitle">Click here to buy:</h4>
-				<button class="button" id="cartButtonP" type="submit">PURCHASE!</button>
+				<button class="button" type="submit">PURCHASE!</button>
 			</form>
 	</div>
 </body>

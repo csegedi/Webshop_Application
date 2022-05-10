@@ -36,14 +36,18 @@
 	</div>
 	<div class="shopBox" id="shopBox_addToCart">
 		<form action="/shop/categories/products/cart" method="post" >
-			<h4 class="lowTitle">Please choose a product and add to your cart</h4>
-				<select class="roll" name="selected_product">
-					<option th:each="products: ${productsList}" th:value="${products.id}" th:text="${products.name}"  ></option>
-				</select>
-				<br>
-				<input type="range" name="selected_quantity" min="0" max="50" value="0" oninput="this.nextElementSibling.value = this.value"  >
-				<output>0</output>
-				<button class="button" id="addToCart" type="submit" value="submit">Add to cart</button>
+		<h4 class="lowTitle">Please choose a product and add to your cart</h4>
+			<select class="roll" name="selected_product">
+				<option th:each="products: ${productsList}" th:value="${products.id}" th:text="${products.name}"  ></option>
+			</select>
+			<br>
+			<br>
+			<br>
+			<input type="range" name="selected_quantity" min="0" max="50" value="0" oninput="this.nextElementSibling.value = this.value"  >
+			<output>0</output>
+			<br>
+			<br>
+			<button class="button" id="addToCart" type="submit" value="submit">Add to cart</button>
 		</form>
 	</div>
 </body>

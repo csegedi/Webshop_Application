@@ -4,10 +4,17 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" >
 	<title>Completed buying!</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 
 <body>
 	<div>
+		<form action="/shop/categories/products/logout"  method="get">
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+	</div>
+
+	<div class="shopBox" id="shortBox">
 		<h4 class="lowTitle">Buying is completed!</h4>
 		<br>
 		<br>
@@ -16,20 +23,15 @@
 			<button class="button" type="submit">Categories</button>
 		</form>
 		<br>
-		
+		<br>
+		<br>
 		<form action="/shop/categories/products" method="post">
-			<h4 class="lowtitle">Click here to select products:</h4>
+			<h4 class="lowTitle">Click here to select products:</h4>
 			<button class="button" type="submit">Products</button>
 		</form>
 		<br>
 		<br>
 		<br>
-		
-		<form action="/shop/categories/products/logout" method="get">
-			<h4 class="lowTitle">Click here to exit:</h4>
-			<br>
-			<button class="button" type="submit">Exit</button>
-		</form>
 	</div>
 </body>
 	

@@ -2,23 +2,25 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Empty cart!</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
 </head>
 
 <body>
-<p>Your cart is empty!</p>
-
-
-	<form action="/shop/categories/products" method="post">
-				
-				<p>Click here to back:</p>
-					
-					<br>
-				
-						<button type="submit">Back</button>
-			</form>
-
+	<div>
+		<form action="/shop/categories/products/logout"  method="get">
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+		<form action="/shop/categories/products" method="post">
+			<button class="back" type="submit"> <span class="material-icons">arrow_back</span></button>
+		</form>
+	</div>
+	<div class="shopBox">
+		<h4 class="lowTitle">Your cart is empty!</h4>
+	</div>
 </body>
 
 </html>

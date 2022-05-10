@@ -13,13 +13,13 @@
 			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
 		</form>
 	</div>
-	<div class="shopBox" id="cartBox">
+	<div class="shopBox" id="adminBox">
 		<h4 class="lowTitle">Add category: </h4>
 		<form action="/admin/newItem" method="post">
 			<input type="text" name="category" >
 			<br>
 			<br>
-			<input class="button" id="adminButton" type="submit" value="Submit">
+			<input class="button" type="submit" value="Submit">
 		</form>
 		<br>
 		<br>
@@ -45,7 +45,7 @@
 			</select>	
 		<br>
 		<br>
-			<input class="button" id="adminButton" type="submit" value="Submit">
+			<input class="button" type="submit" value="Submit">
 		</form>
 		<br>
 		<br>
@@ -57,10 +57,12 @@
 			<select class="roll" name="selected_pprice" >
 				<option th:each="product_list:${list}" th:value="${product_list.id}" th:text="${product_list.name}" ></option>
 			</select>
+			<br>
+			<br>
 			<input type="number" name="price"> 
 			<br>
 			<br>
-			<input class="button" id="adminButton" type="submit" value="Submit">		
+			<input class="button" type="submit" value="Submit">		
 		</form>
 		<br>
 		<br>
@@ -70,10 +72,12 @@
 			<select class="roll" name="selected_pquantity" >
 				<option th:each="product_list:${list}" th:value="${product_list.id}" th:text="${product_list.name}" ></option>
 			</select>
+			<br>
+			<br>
 			<input type="number" name="quantity"  >
 			<br>
 			<br>
-			<input class="button" id="adminButton" type="submit" value="Submit">
+			<input class="button"type="submit" value="Submit">
 		</form>	
 		<br>
 		<br>		
