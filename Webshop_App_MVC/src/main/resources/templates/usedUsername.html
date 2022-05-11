@@ -5,25 +5,22 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 	<title>Used Username!</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 
 <body>
+	<div>
+		<form action="/"  method="get">
+			<button class="exit" type="submit"> <span class="material-icons">close</span></button>
+		</form>
+		<form action="/signIn" method="post">
+			<button class="back" type="submit"> <span class="material-icons">arrow_back</span></button>
+		</form>
+	</div>
 	<div class="regBox">
 		<h4 class="secondaryTitle">The registration was unsuccessful!</h4>
 		<h5 class="lowTitle"> We are sorry, but your username is used in our database!! </h5>
 		<h5 class="lowTitle"> Please insert an another username! </h5>
-		<form action="/signIn" method="post">
-			<p>Click here to restart the registration:</p>
-			<br>
-			<button class="button" type="submit">Back</button>
-		</form>
-			<br>
-			<br>
-		<form  action="/" method="get">
-			<p>Click here to exit:</p>
-			<br>
-			<button class="button" type="submit">Exit</button>
-		</form>
 	</div>
 </body>
 

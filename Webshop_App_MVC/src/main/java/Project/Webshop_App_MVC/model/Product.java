@@ -1,9 +1,6 @@
 package Project.Webshop_App_MVC.model;
 
-
-
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,47 +10,44 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table (name="products")
+@Table(name = "products")
 public class Product {
 
 	@Id
-	@Column(name="id")
-	@GeneratedValue (strategy = GenerationType.IDENTITY )
-	private int id; 
-	
-	@Column (name="name")
-	private String name; 
-	
-	@Column (name="price")
-	private double price; 
-	
-	@Column (name="ingredients")
-	private String ingredients; 
-	
-	@Column (name="quantity")
-	private int quantity; 
-	
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "price")
+	private double price;
+
+	@Column(name = "ingredients")
+	private String ingredients;
+
+	@Column(name = "quantity")
+	private int quantity;
+
 	@Transient
-	private int actualCartQuantity; 
-	
-	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable (
-			name="products_ratings_mapping",
-			joinColumns= @JoinColumn (name="product_id"),
-			inverseJoinColumns=@JoinColumn (name="rating_id")
-			)
-	private List<Rating>ratings; 
-	
-	@Column (name="averageRating")
-	private double averageRating; 
-	
-	
+	private int actualCartQuantity;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "products_ratings_mapping", 
+			joinColumns = @JoinColumn(name = "product_id"), 
+			inverseJoinColumns = @JoinColumn(name = "rating_id"))
+	private List<Rating> ratings;
+
+	@Column(name = "averageRating")
+	private double averageRating;
+
 	public Product() {
 		super();
 	}
@@ -64,8 +58,8 @@ public class Product {
 		this.price = price;
 		this.ingredients = ingredients;
 		this.quantity = quantity;
-		this.averageRating=initAverageRating; 
-		
+		this.averageRating = initAverageRating;
+
 	}
 
 	public int getId() {
@@ -103,15 +97,11 @@ public class Product {
 	public int getQuantity() {
 		return quantity;
 	}
-	
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
 
-	
-	
 	public List<Rating> getRatings() {
 		return ratings;
 	}
@@ -121,20 +111,19 @@ public class Product {
 	}
 
 	public void setAverageRating() {
-		
-			int assistant=0;
-			
-			for (int i=0; i<ratings.size(); i++) {
-				assistant+=ratings.get(i).getGrade(); 
-			}
-			averageRating=assistant/(double)ratings.size(); 
-			
+
+		int assistant = 0;
+
+		for (int i = 0; i < ratings.size(); i++) {
+			assistant += ratings.get(i).getGrade();
 		}
+		averageRating = assistant / (double) ratings.size();
+
+	}
 
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
 
 	public int getActualCartQuantity() {
 		return actualCartQuantity;
@@ -143,32 +132,28 @@ public class Product {
 	public void setActualCartQuantity(int actualCartQuantity) {
 		this.actualCartQuantity = actualCartQuantity;
 	}
-	
-	
-	public void cartIncrease (int quantity) {
-		
-		 int increase=actualCartQuantity+quantity;
-		
-		this.actualCartQuantity=increase; 
+
+	public void cartIncrease(int quantity) {
+
+		int increase = actualCartQuantity + quantity;
+
+		this.actualCartQuantity = increase;
 
 	}
-	
-	public void cartDecrease (int quantity) {
-		
-		 int decrease=actualCartQuantity-quantity;
-		
-		this.actualCartQuantity=decrease; 
+
+	public void cartDecrease(int quantity) {
+
+		int decrease = actualCartQuantity - quantity;
+
+		this.actualCartQuantity = decrease;
 
 	}
 
 	public void quantityDecrease() {
-		
-		int decrease=quantity-actualCartQuantity;  
-		
-		this.quantity=decrease; 
+
+		int decrease = quantity - actualCartQuantity;
+
+		this.quantity = decrease;
 	}
-	
-	
-	
 
 }
