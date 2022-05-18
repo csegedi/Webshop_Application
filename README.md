@@ -17,12 +17,12 @@ This application uses cookies to track the customers' activity (for example keep
 ## The database tables 
 
 The application has a database connection, the database tables are the following:
-*	users: store the user’s name password, and it contains the role of the customers (role can be customer or administrator). 
-*	products: this table contains the most important data of the products such as name, price, and ingredients. Moreover, it stores the quantity of the current product in the storage, and it stores the average value of the customers' ratings. 
-*	categories: it contains the name of the categories.
-*	categories_product_mapping: it helps to build the connection between the categories and products tables. 
-*	ratings: it stores the ratings given by the customers
-*	user_products_ratingtable: This is a connection between the customer and the products. After the first login, the customer gets every product to rate. This table contains the identifier number of the user and the identifier number of each product. If the customer has given a rate, the rated product will be removed from the customer: so the current customer can rate the current product just once. For example, the registered customer „John” gave a rate for the product „Levendula soap”. He is a very satisfied customer, he gave the highest value. John has no more opportunity to rate the product again, but another customer, who never rated this product, can give a rate of course.
+*	**users**: store the user’s name password, and it contains the role of the customers (role can be customer or administrator). 
+*	**products**: this table contains the most important data of the products such as name, price, and ingredients. Moreover, it stores the quantity of the current product in the storage, and it stores the average value of the customers' ratings. 
+*	**categories**: it contains the name of the categories.
+*	**categories_product_mapping**: it helps to build the connection between the categories and products tables. 
+*	**ratings**: it stores the ratings given by the customers
+*	**user_products_ratingtable**: This is a connection between the customer and the products. After the first login, the customer gets every product to rate. This table contains the identifier number of the user and the identifier number of each product. If the customer has given a rate, the rated product will be removed from the customer: so the current customer can rate the current product just once. For example, the registered customer „John” gave a rate for the product „Levendula soap”. He is a very satisfied customer, he gave the highest value. John has no more opportunity to rate the product again, but another customer, who never rated this product, can give a rate of course.
 
 ## The model elements
 
