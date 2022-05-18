@@ -1,4 +1,4 @@
-# Webshop MVC Application
+# Webshop MVC Application (Nefertiti Online Store-Demo Webshop)
  
 ## Short review:
 The application is a fictitious webshop (Nefertiti Online Store) , where exotic cosmetic products are sold in various categories. It is also important to note, that this is a demo application about a simulation of typical webshop activities (product selecting, adding to cart, rating the product, customer tracking, management of the stock, etc).
