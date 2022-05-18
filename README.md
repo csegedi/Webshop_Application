@@ -32,7 +32,8 @@ The application has a database connection, the database tables are the following
 *	ingredients (String): a short description of the products:
 *	quantity (int): it shows many pieces of the product are actually in the storage: in case of buy, the quantity is decreased).
 *	ratings: This is a list, which contains Ratings classes. The ratings can be given by the customers. One product can store many products (OneToMany connection). 
-*	averageRating: This stores the average value of the ratings given by several customers. To this attribute is attached a method within this class, which calculate its value.	actualQuartQuantity: this attribute isn’t in the database, this is temporary data, it shows, how many products are actually in the customer’s basket. It will be cleared after every buying.
+*	averageRating: This stores the average value of the ratings given by several customers. To this attribute is attached a method within this class, which calculate its value.	
+*	actualQuartQuantity: this attribute isn’t in the database, this is temporary data, it shows, how many products are actually in the customer’s basket. It will be cleared after every buying.
 
 **The Category Class**
 
