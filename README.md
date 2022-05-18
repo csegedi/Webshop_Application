@@ -1,9 +1,8 @@
 # Webshop MVC Application
  
 ## Short review:
- 
-The application is a fictitious webshop, where cosmetic products are sold in various categories.
-The application has a database connection, the database tables are the following:
+The application is a fictitious webshop (Nefertiti Online Store) , where exotic cosmetic products are sold in various categories. It is also important to note, that this is a demo application about a simulation of typical webshop activities (product selecting, adding to cart, rating the product, customer tracking, management of the stock, etc).
+
 * users
 * products
 * categories
