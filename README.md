@@ -3,10 +3,18 @@
 ## Short review:
 The application is a fictitious webshop (Nefertiti Online Store) , where exotic cosmetic products are sold in various categories. It is also important to note, that this is a demo application about a simulation of typical webshop activities (product selecting, adding to cart, rating the product, customer tracking, management of the stock, etc).
 
-* users
-* products
-* categories
-* products-categories joinTable
+In this application can be two participants with different possibilities and permissions:
+* the customer
+* the administrator
+
+After a registration the customer can select from the categories of the product, he or she can select a current product within the selected category, the selected product can be added to the cart, it can be removed from the cart, or its quantity in the cart can be modified, and of course, the customer can buy the selected product(s). The customer has furthermore the opportunity, to rate the selected product(s).
+The administrator is responsible for the management of the stock, he can add new categories, and products to the webshop, and he can modify the properties of the extant products. 
+
+This application has been built on the grounds of the MVC pattern, where the control logic consist of two classes. The AdminController class contains the methods which are able to operate the activities of the administrator. The UserController class is responsible for the functioning of every activity, which can be done by the customer.
+
+This application uses cookies to track the customers' activity (for example keeping the content of the cart, while the customer steps back to another page).
+
+
 
  
 ## The attributes of the product
