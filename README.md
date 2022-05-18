@@ -54,7 +54,8 @@ Furthermore, the User class contains a list, which stores every Product without 
 ## The UserController Class
 
 **Registration**: if the customer wants to buy something, it is necessary to register. The registration is initiated by the customer. The customer must give a username and a password to complete the registration.
-The strength of the password: The application always checks the strength of the password. The password is appropriate if it contains a number and upper case. If the registration was successful, the customer can log in, otherwise, the customer must restart the process of the registration.
+
+**The strength of the password**: The application always checks the strength of the password. The password is appropriate if it contains a number and upper case. If the registration was successful, the customer can log in, otherwise, the customer must restart the process of the registration.
 
 **Check the registered users**: if the user by the registration gives a username that can be already found in the database, the application warns the user to choose another name, otherwise the registration will be denied. 
 
